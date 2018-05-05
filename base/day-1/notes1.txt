@@ -1,0 +1,44 @@
+----关于SSH--------------------------------------------------------
+第一步：第一步检查是否存在有  .shh存在 
+如果有文件
+rm -r ~/.ssh
+第二部：生成新的ssh密钥对
+	ssh-keygen -t rsa -C "xxx@xxx.com" 
+其中“xxx@xxx.com“为注册github的地址
+第三步：将自己的公钥添加的github上面
+	复制id_rsa.pub里面的内容到github上面
+第三步：测试你的ssh链接
+	ssh -T git@github.com
+显示：Hi xxxx! You've successfully authenticated, but GitHub does not provide shell access.表示链接成功
+
+----上传本地的文件：----------------------------------------------------------------------
+git push -u origin master
+第一步：通过命令git init把这个文件夹变成Git可管理的仓库
+	$git init
+第二部：git add .把该目录下的所有文件添加到仓库，注意点是用空格隔开的
+第三步：用git commit把项目提交到仓库。
+	$Git commit -m “frist test”  
+#-m后面引号里面是本次提交的注释内容
+第四部：在Github上设置好SSH密钥后，新建一个远程仓库，通过git remote add origin https://github.com/guyibang/TEST2.git将本地仓库和远程仓库进行关联
+$git remote add origin https://github.com/guyibang/TEST2.git
+第五步：
+另外，这里有个坑需要注意一下，你创建远程仓库的时候，如果你勾选了Initialize this repository with a README（就是创建仓库的时候自动给你创建一个README文件），那么到了第九步你将本地仓库内容推送到远程仓库的时候就会报一个failed to push some refs to  https://github.com/guyibang/TEST2.git的错。
+这是由于你新创建的那个仓库里面的README文件不在本地仓库目录中，这时我们可以通过以下命令先将内容合并以下：
+$ git pull --rebase origin master
+第六步：最后通过git push -u origin master把本地仓库的项目推送到远程仓库（也就是Github）上
+$git push -u origin master
+----从github 克隆下来：------------------------------------------------------------
+第一步：先进入自己本地创建的文件夹
+	cd /e/百度前端技术学院
+第二部：将本地仓库初始化
+	git init 
+第三部：需要的项目从github或者服务器上克隆下来
+	git clone github代码地址
+----github项目预览--------------------------------------------------------------------
+第一种方法：
+打开的源码地址的url地址基础上加前缀http://htmlpreview.github.io/?	
+第二种方法：
+在项目的branch上添加github-pages。
+具体操作就是进入一个仓库中点击setting的github pages进行设置ok即可
+ 
+（图片中蓝绿色部分所写到网址就预览地址）
