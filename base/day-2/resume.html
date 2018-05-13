@@ -1,82 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 	<meta charset="UTF-8">
 	<title>Mr Zhang resume</title>
-	<style>
-		li{
-			list-style: none;
-		}
-		.content{
-			width: 80%;
-			height: 100%;
-			margin: 0 auto;
-			border: 1px solid blue;
-			padding: 0 50px 0 50px;
-		}
-		h2{
-			text-align: center;
-		}
-		.base{
-			float: left;
-			width: 50%;
-			 
-		}
-		.contact{
-			float: left;
-			width: 50%;
-		}
-		.clear{
-			clear: both;
-		}
-	</style>
+	<link rel="stylesheet" href="./css/resume.css">
 </head>
 <body>
 	<div class="content">
-		<h2>个人简历</h2>
-		<div class="base">
-			<h5>基本信息</h5>
-			<ul>
-				<li>姓名：张三</li>
-				<li>性别：男</li>
-				<li>应聘职位：Web前段工程师</li>
-			</ul>
+		<div class="leftContent">
+			<img src="https://ws1.sinaimg.cn/large/6ca89370gy1fr1b3g0o1tj20m80l0t9g.jpg" alt="" width="120px">
+			<p>张三</p>
+			<dl>
+				<dd>生辰：2018/02/05</dd>
+				<dd>电话：15100001111</dd>
+				<dd>住址：中国四川</dd>
+				<dd>邮箱：1024@qq.com</dd>
+			</dl>
+			<dl>
+				<dt>技能特长</dt>
+				<dd>熟悉html，css，js</dd>
+				<dd>熟悉bootsrap框架</dd>	
+				<dd>了解vue.js框架</dd>	
+				<dd>好的沟通，主动积极</dd>
+			</dl>
 		</div>
-		<div class="contact">
-			<h5>联系方式</h5>
-			<ul>
-				<li>手机：180000000</li>
-				<li>Email：ife@baidu.com</li>
-				<li>个人主页：<a href="https://github.com/MsZhangZB">github</a></li>
-			</ul>
+		<div class="empty"></div>
+		<div class="rightContent">
+			<div class="item">
+				<h2>求职意向</h2>
+				<ul>
+					<li>web前端工程师助理</li>
+					<li>全职</li>
+					<li>成都</li>
+					<li>3k-5k</li>
+				</ul>
+				<div style="clear:both"></div>
+			</div>
+			<div  class="item">
+				<h2>工作经历</h2>
+				<ul>
+					<li>2012.2-2016-2</li>
+					<li>某某大学</li>
+					<li>电子商务专业</li>
+				</ul>
+				<div style="clear:both"></div>
+				<p class="course">主修课程：C语言、基础英语、Jav编程、Web前端设计、SQL数据库、财务管理
+				</p>
+			</div>
+			<div class="item">
+				<h2>工作经历</h2>
+				<ul>
+					<li>2015-2018</li>
+					<li>某某公司兼职</li>
+					<li>前端工程师助理</li>
+				</ul>
+				<div style="clear:both"></div>
+				<ol class="respon">
+					<li>负责协助前端工程师修改和维护代码</li>
+					<li>负责协助前端工程师修改和维护代码</li>
+					<li>负责协助前端工程师修改和维护代码</li>
+				</ol>
+				<ul>
+					<li>2013-2015</li>
+					<li>某某公司实习</li>
+					<li>前端工程师助理</li>
+				</ul>
+				<div style="clear:both"></div>
+				<ol class="respon">
+					<li>负责协助前端工程师修改和维护代码</li>
+					<li>负责协助前端工程师修改和维护代码</li>
+					<li>负责协助前端工程师修改和维护代码</li>
+				</ol>
+			</div>
+			<div class="item">
+				<h2>荣誉奖项</h2>
+				<ul>
+					<li>C语言二级证书</li>
+					<li>CTE6</li>
+					<li>信息安全技术三级证书</li>
+				</ul>
+				<div style="clear:both"></div>
+			</div>		
 		</div>
-		
-		<div class="base">
-			<h5>能力描述</h5>
-			<ul>
-				<li>熟悉掌握HTML,JS,CSS</li>
-				<li>良好的沟通，主动积极，努力刻苦</li>
-			</ul>
-		</div>
-		<div  class="base">
-			<h5>教育经历</h5>
-			<ul>
-				<li>本科:</li>
-				<li>百度前端技术学院小薇学院</li>
-				<li>研究生:</li>
-				<li>百度前端技术学院大斌学院</li>
-			</ul>
-		</div>
-		<div class="clear"></div>
-		<div>
-			<h5>项目经历</h5>
-			<ul>
-				<li>小度小度:</li>
-				<li>作为前端工程师助理参与了ABC组件的开发</li>
-				<li>SAN Doc:</li>
-				<li>作为文档工程师参与了SAN Doc编写</li>
-			</ul>
-		</div>
+		<div style="clear:both"></div>
 	</div>
 
 </body>
