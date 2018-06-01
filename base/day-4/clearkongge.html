@@ -55,6 +55,51 @@ a:active {
   --><li><a href="#">Wombats</a></li><!--
   --><li><a href="#">Finland</a></li>
   </ul>
-  <ol>
+<h2>行内元素之间空隙解决方法（我推荐使用第一种方法或者第三种方法）</h2>
+<h4>1)尝试在标签器里把空格去掉（极力推荐）</h4>
+<xmp>
+    <span></span><!--
+    --><span></span><!--
+    --><span></span><!--
+    --><span></span><!--
+    --><span></span><!--
+    --><span></span><!--
+    --><span></span><!--
+    -->
+</xmp>
+或者
+<xmp> 
+  <span></span><span></span><span></span>
+</xmp> 
+<h4>2）给一个负边距（不推荐）</h4>
+<xmp>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    span {
+      display: inline-block;
+      width: 100px;
+      height: 50px;
+      background: green;
+      margin-right: -5px;
+    }
+    </style>
+  </head>
+  <body>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </body>
+  </html>
+</xmp>
+<h4>3）给父元素设置font-size:0来实现</h4>
+<h4>4）使用flexbox布局模式（基本的浏览器都不支持这个布局模式）</h4>
 </body>
 </html>
