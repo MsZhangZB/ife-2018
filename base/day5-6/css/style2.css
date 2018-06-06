@@ -1,0 +1,41 @@
+body {
+	font-family: "Microsoft YaHei";
+}
+.left {
+	background: #654afa;
+	float: left;
+	width: 20%;
+	height: 100%;
+	margin: 0;
+	color: #fff;
+	text-align: center;
+}
+.right {
+	float: right;
+	width: 75%;
+}
+.content {
+	width: 1000px;
+	min-width: 555px;
+	height: 750px;
+	overflow: auto;
+	margin: 0 auto;
+	clear: both;
+}
+dd {
+	float: left;
+	margin: 6px 0;
+	margin-right: 30px; 
+}
+dl,dt {
+	overflow: auto;
+	zoom:1; /* 兼容IE6 */
+	clear: both;
+}
+dt {
+	font-weight: bold;
+}
+label {
+	font-weight: bold;
+	margin-right: 10px;
+}
