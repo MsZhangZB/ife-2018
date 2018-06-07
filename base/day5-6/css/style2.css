@@ -13,7 +13,7 @@ body {
     clear:both;/*清除浮动*/
     display:block;/*确保该元素是一个块级元素*/
 }
-.left {
+.title {
 	background: skyblue;
 	float: left;
 	width: 20%;
@@ -23,7 +23,7 @@ body {
 h1 {
 	margin-top: 50px;
 }
-.right {
+.info {
 	float: left;
 	width: 75%;	
 	padding-left: 5%;
