@@ -24,3 +24,8 @@ label {
 	font-weight: bold;
 	margin-right: 10px;
 }
+select {
+	position: absolute;
+	top:21px;
+	right: 50px;
+}
