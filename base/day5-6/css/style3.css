@@ -1,3 +1,57 @@
+body {
+	font-family: "Microsoft YaHei";
+}
+.content {
+	margin: 0 auto;
+	width: 80%;
+	height: auto;
+}
+.left {
+	padding: 21px; 
+	background-color: #5F5D5D;
+	color: #fff;
+}
+.right {
+	overflow: auto;
+	border-right: 1px solid #ccc;
+}
+h1,h3,dl{
+	margin: 0;
+}
+h3 {
+	box-sizing: border-box;
+	float: left;
+	border-bottom: 1px solid white;
+	width: 20%;
+	height: 120px;
+	text-align: center;
+	background-color: #ccc;
+	line-height: 120px;
+}
+dl {
+	box-sizing: border-box;
+	float: left;
+	padding-top: 20px;
+	border-bottom: 1px solid #ccc;
+	width: 80%;
+	height: 120px;
+}
+dd {
+	float: left;
+}
+dt {
+	font-weight: bold;
+	margin-left: 40px;
+	float: left;
+	clear: both;
+}
+dt + dd {/*相邻兄弟选择器可选择紧接在另一元素后的元素，且二者有相同父元素*/
+	margin: 0;
+}
+label {
+	font-weight: bold;
+	margin-right: 10px;
+}
 select {
 	position: absolute;
 	top:21px;

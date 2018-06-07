@@ -6,7 +6,7 @@ body {
 	width: 80%;
 	min-width: 555px;
 	clear: both;
-	background-color: #5130e0;
+	background-color: skyblue;
 }
 .content:after {/*ie8只支持:after不支持::after*/
     content:"";
@@ -14,8 +14,9 @@ body {
     display:block;/*确保该元素是一个块级元素*/
 }
 .left {
+	background: skyblue;
 	float: left;
-	width: 17%;
+	width: 20%;
 	color: #fff;
 	text-align: center;
 }
@@ -24,7 +25,7 @@ h1 {
 }
 .right {
 	float: left;
-	width: 78%;	
+	width: 75%;	
 	padding-left: 5%;
 	background-color: white;
 }
