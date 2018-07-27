@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		main {
+			position: relative;
+			width: 100%;
+			height: 200px;
+			background-color: #ccc;
+		}
+		.leftBox, 
+		.middleBox,
+		.rightBox {
+			position: absolute;
+		}
+		.leftBox {
+			left: 0;
+			width: 100px;
+			height: 100%;
+			background-color: red;
+		}
+		.middleBox {
+			left: 140px;
+			right: 140px;
+			height: 100%;
+			background-color: green;
+		}
+		.rightBox {
+			right: 0;
+			width: 100px;
+			height: 100%;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<div class="leftBox"></div>
+		<div class="middleBox"></div>
+		<div class="rightBox"></div>
+	</main>
+</body>
+</html>

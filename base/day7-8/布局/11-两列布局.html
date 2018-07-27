@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+	.wrapper {
+    padding: 15px 20px;
+    border: 1px dashed #ff6c60;
+    }
+	.left {
+		width: 120px;
+		border: 5px solid #ddd;
+	}
+	.right {
+		margin-left: 20px;
+		border: 5px solid #ddd;
+	}
+	.mb {
+		padding: 20px;
+	}
+/******************双inline-block方案*/
+	.wrapper-inline-block {
+		font-size: 0; /*消除空格的影响*/
+	}
+	.wrapper-inline-block .left ,
+	.wrapper-inline-block .right {
+		display: inline-block;
+		font-size: 16px;
+		vertical-align: top; /*顶端对齐*/
+		box-sizing: border-box;
+	}
+	.wrapper-inline-block .right {
+		width: calc(100% - 140px);
+	}
+/******************双float方案*/
+	.wrapper-double-float {
+	    overflow: auto; /*清楚浮动*/        
+	    box-sizing: content-box;
+	}
+	.wrapper-double-float .left,
+	.wrapper-double-float .right{
+		float: left;
+		box-sizing: border-box;
+	}
+	.wrapper-double-float .right {
+    	width: calc(100% - 140px);
+ 	}
+/*****************float+margin-left方案*/
+ 	.wrapper-float {
+    	overflow: hidden; /*清除浮动*/
+	}
+	.wrapper-float .left {
+    	float: left;
+	}
+	.wrapper-float .right {
+    	margin-left: 150px;
+	}
+/*****************absolute+margin-left方案*/
+	.wrapper-absolute .left {
+    	position: absolute;
+	}
+	.wrapper-absolute .right {
+	    margin-left: 150px;
+	}
+/*****************float+BFC方案*/
+	.wrapper-float-bfc {
+	    overflow: auto;
+	}
+	.wrapper-float-bfc .left {
+	    float: left;
+	    margin-right: 20px;
+	}
+	.wrapper-float-bfc .right {
+	    margin-left: 0;
+	    overflow: auto;
+	}
+/*****************flex方案*/
+	.wrapper-flex {
+	    display: flex;
+	    align-items: flex-start;
+	}
+	.wrapper-flex .left {
+	    flex: 0 0 auto;
+	}
+	.wrapper-flex .right {
+	    flex: 1 1 auto;
+	}
+/*****************gird方案*/
+	.wrapper-grid {
+	    display: grid;
+	    grid-template-columns: 120px 1fr;
+	    align-items: start;
+	}
+	.wrapper-grid .left,
+	.wrapper-grid .right {
+	    box-sizing: border-box;
+	}
+	.wrapper-grid .left {
+	    grid-column: 1;
+	}
+	.wrapper-grid .right {
+	    grid-column: 2;
+	}
+  </style>
+ </head>
+ <body>
+	 <div class="mb">
+		 <span>七中不同的方式显示此布局：</span>
+		 <select id="exmethod">
+			<option value="wrapper-inline-block">双inline-block方案</option>
+			<option value="wrapper-double-float">双float方案</option>
+			<option value="wrapper-float">float+margin-left方案</option>
+			<option value="wrapper-absolute">absolute+margin-left方案</option>
+			<option value="wrapper-float-bfc">float+BFC方案</option>
+			<option value="wrapper-flex">flex方案</option>
+			<option value="wrapper-grid">gird方案</option>
+		 <select>
+	 </div>
+	 <div class="mb">
+		 <span>左边div的高度：</span>
+		 <select id="addheight">
+			<option value="50px">右侧较低</option>
+			<option value="400px">右侧较高</option>
+		 <select>
+	 </div>
+	 <div class="wrapper wrapper-inline-block" id="wrapper">
+		  <div class="left">
+			左边固定宽度，高度不固定 </br> </br></br></br>高度有可能会很小，也可能很大。
+		  </div>
+		  <div class="right">
+			这里的内容可能比左侧高，也可能比左侧低。宽度需要自适应。</br>
+			基本的样式是，两个div相距20px, 左侧div宽 120px
+		  </div>
+	 </div>	 
+		<p>最后可以再看一下在父容器极限小的情况下，不同方案的表现。主要分成四种情况：</p>
+		<p>动态计算宽度的情况两种方案: <br/>&nbsp;&nbsp;&nbsp;&nbsp;
+		双inline-block方案和双float方案。宽度极限小时，右侧的div宽度会非常小，由于遵循流动布局，所以右侧div会移动到下一行。<br/>
+		动态计算右侧margin-left的情况两种方案: <br/>&nbsp;&nbsp;&nbsp;&nbsp;
+		float+margin-left方案和absolute+margin-left方案。宽度极限小时，由于右侧的div忽略了文档流中左侧div的存在，所以其依旧会存在于这一行，并被隐藏。<br/>
+		float+BFC方案的情况:<br/>&nbsp;&nbsp;&nbsp;&nbsp;
+		这种情况下，由于BFC与float的特殊关系，右侧div在宽度减小到最小后，也会掉落到下一行。<br/>
+		flex和grid的情况:<br/>&nbsp;&nbsp;&nbsp;&nbsp;
+		这种情况下，默认两种布局方式都不会放不下的div移动到下一行。不过 flex布局可以通过 flex-flow: wrap;来设置多余的div移动到下一行。 grid布局暂不支持。
+	 </p>
+ </body>
+ <script>
+	var div = document.getElementById('wrapper'),
+		exmethod =  document.getElementById('exmethod'),
+		addheight =  document.getElementById('addheight'),
+		right = document.getElementsByClassName('right')[0];
+		//改变实现方式
+		exmethod.onchange = function() {
+			if(div.className != wrapper) {
+				div.className  = "wrapper"; 
+				div.className += " "+this.value;
+			}
+		}
+		//改变高度
+		addheight.onchange = function() {
+			right.style.height = this.value;
+		}
+ </script>
+</html>
