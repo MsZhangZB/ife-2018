@@ -28,3 +28,20 @@
 |作用|relative+fixed的完美结合，制造出吸附效果|
 | -------- | -------- |
 |特点|1：如果产生偏移，原位置还是会在常规流中<br/>2：如果它最近祖先元素有有滚动，那么它的偏移标尺就是最近的祖先元素<br/>3：如果最近祖先元素每有滚动，那么它的偏移的标尺是视口|
+# flex
+flex弹性盒子布局
+采用flex布局的元素，称为flex容器。他的所有子元素自动成为容器成员，称为flex项目（flex item）,简称“项目”
+
+![Alt text](https://ws1.sinaimg.cn/large/6ca89370gy1fto7tbovnuj20fn099q3f.jpg) 
+* 主轴（main axis）是沿着 flex 元素放置的方向延伸的轴（比如页面上的横向的行、纵向的列）。该轴的开始和结束被称为 main start 和 main end。
+* 交叉轴（cross axis）是垂直于 flex 元素放置方向的轴。该轴的开始和结束被称为 cross start 和 cross end。
+* 设置了 display: flex 的父元素（在本例中是 <section>）被称之为 flex 容器（flex container）。
+* 在 flex 容器中表现为柔性的盒子的元素被称之为 flex 项（flex item）（本例中是 <article> 元素。
+
+|属性|作用|属性值|
+| -------- | -------- | -------- |
+|flex-direction|决定主轴的方向|row（默认）、row-reverse、column、column-reverse|
+|flex-wrap|如果一条周线排列不下，如何换行|nowwap(默认)、wrap（第一行在上方）、wrap-reverse（第一行在下方）|
+|flex-flow|是flex-direction与flex-wrap的属性间歇形式|默认值：row nowwrap|
+|justify-content|定义项目在主轴上的对齐方式|flex-start(默认值)：左对齐、flex-end：右对齐、center居中、space-between：两端对齐，项目间距相等、space-around：每个项目两侧的间隔相等|
+|align-items|定义项目在交叉轴上如何对齐|flex-start：交叉轴的起点对齐、flex-end：交叉轴的终点对齐、center：交叉轴的终点对齐、baseline：项目的第一行文字的基线、stretch（默认值）：项目未设置高度或者auto，将占满整个容器的高度|
