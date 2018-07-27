@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>	
+	<style>
+		*{margin:0; padding:0;}
+		header,footer {
+			width: 100%;
+			height: 50px;
+			background-color: #ccc;
+		}
+		.container {
+			overflow: hidden;
+			padding: 0 200px;
+		}
+		.middle {
+			float: left;
+			width: 100%;
+						
+		}
+		.middle .middleInner{
+			height: 200px;
+			background-color: red;
+		}
+		.left {
+			position: relative;
+			left: -200px;
+			float: left;
+			margin-left: -100%;
+			width: 200px;
+			height: 200px;
+			background-color: yellow;
+		}
+		.right {
+			position: relative;
+			right: -200px;
+			float: left;
+			margin-left: -200px;
+			width: 200px;
+			height: 200px;
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<header>Header内容区</header>
+	<div class="container">
+		<div class="middle">
+			<div class="middleInner">
+				<h4>中间弹性区</h4>
+			</div>
+		</div> 
+		<div class="left"><h4>左边栏</h4></div> 
+		<div class="right"><h4>右边栏</h4></div>
+	</div>
+	<footer>Footer内容区</footer>
+</body>
+</html>
