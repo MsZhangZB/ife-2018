@@ -1,0 +1,129 @@
+html,body,h2,ul,li{
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+}
+ul {list-style: none;}
+header {
+	width: 100%;
+	height: 80px;
+	background-color: #333333;
+	color: white;
+}
+.outer {
+	width: 960px;
+	margin: 0 auto;
+}
+h2 {
+	line-height: 80px;
+	width: 50%;
+	float: left;
+
+}
+nav {
+	width: 50%;
+	height: 80px;
+	float: left; 
+}
+nav ul {float: right;}
+nav ul li {
+	float: left;
+	margin: 5px 10px 0 0;
+	text-decoration: underline;
+}
+
+/*banner*/
+.banner {
+	position: relative;
+	width: 100%;
+	height: 300px;
+	background-color: #6b3;
+}
+.banner ul {
+	position: absolute;
+	right: calc( (100% - 960px)  / 2);
+	bottom: 20px;
+}
+.banner li {
+	display: inline-block;
+	vertical-align: bottom;
+	margin: 0 8px;
+	width: 30px;
+	height: 35px;
+	line-height: 35px;
+	text-align: center;
+	background-color: #b2dd99;
+}
+.banner .selected {
+	height: 50px;
+	line-height: 50px;
+	background-color: white;
+}
+/*主导航*/
+.navmenu {
+	height: 50px;
+	border-bottom: 1px solid #ccc;
+	margin: 20px 0; 
+}
+.navmenu ul {
+	width: 960px;
+	margin: 0 auto;
+}
+.navmenu li{
+	float: left;
+	padding: 0 35px;
+	height: 50px;
+	line-height: 50px;
+	border: 1px solid #ccc;			
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	background-color: #eeeeee;
+
+}
+.navmenu .present{
+	background-color: white;
+	border-bottom: none;
+}
+/*内容区域*/
+main {
+	width: 960px;
+	margin: 0 auto;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+.maintop,.center,.bottom{
+	display: flex;
+}
+.maintop div{
+	flex: 1;
+	text-align: center;
+	border: 1px solid #ccc;
+	padding: 80px 100px;	
+	margin: 10px;
+}
+.center div{
+	flex: 1;
+	text-align: center;
+	border: 1px solid #ccc;	
+	padding: 75px;	
+	margin: 10px;
+}
+.bottom div{
+	flex: 1;
+	text-align: center;
+	border: 1px solid #ccc;	
+	padding: 90px;	
+	margin: 10px;
+	flex-basis: 500px;
+}
+/*footer部分*/
+footer {
+	width: 100%;
+	height: 100px;
+	background-color: #666666;
+	color: white;
+	text-align: center;
+	padding-top: 20px; 
+}
