@@ -1,0 +1,489 @@
+body {
+	width: 1600px;
+	font-family: "Montserrat ExtraLight";
+}
+html,body,h1,h4,h3,p,button,input,dl,ul,li,dd{
+	margin: 0;
+	padding: 0;
+}
+.clearfix:after {
+	content: " ";
+	display: block;
+	height: 0;
+	clear: both;
+}
+ul li{
+	list-style: none;
+}
+/*header*/
+header {
+	height: 990px;
+	background-image: url(../img/bg1.png);
+	position: relative;
+}
+header .mask {
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.5;
+}
+header .content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 218px 315px 210px 315px;
+	/*background-color: red;*/
+	width: 970px;
+	height: 562px;
+	color: white;
+	text-align: center;
+}
+header h1 {
+	font-size: 62px;
+	font-family: "Montserrat";
+}
+header .welcome {
+	margin: 0 auto;
+	width: 766px;
+	height: 208px;
+	font-size: 20px;
+}
+header .welcome p {
+	opacity: 0.7;
+}
+header .signUp {
+	width: 968px;
+	height: 248px;
+	border: 1px solid white;
+}
+header .signUp input {
+	margin-right: 30px;
+	border: 1px solid white;
+	border-radius: 2px;
+	width: 300px;
+	height: 48px;	
+	background: rgba(0,0,0,0);
+	color: white;
+}
+header .signUp button {	
+	margin-top: 39px;
+	border: 0;	
+	border-radius: 2px;
+	width: 150px;
+	height: 50px;
+	background-color: white;
+	font-weight: bold;
+}
+header .signUp h4 {
+	font-size: 16px;
+	margin: 61px 0 11px 0;
+}
+header .signUp p {
+	opacity: 0.3;
+	font-size: 12px;
+}
+/*修改input中的placeholder默认样式*/
+header input[type="text"]::-webkit-input-placeholder { 
+	color: white; 
+} 
+header input[type="text"]:-moz-placeholder { 
+	color: white; /* Mozilla Firefox 19+ */
+} 
+header input[type="text"]::-moz-placeholder { 
+	color: white; /* Mozilla Firefox 19+ */
+} 
+header input[type="text"]:-ms-input-placeholder { 
+	padding-left: 22px;/* Internet Explorer 10-11 */ 
+} 
+header input::-webkit-input-placeholder { 
+	padding-left: 22px;
+} 
+header input:-moz-placeholder {  
+	padding-left: 22px;/* Mozilla Firefox 19+ */
+} 
+header input::-moz-placeholder { 
+	color: white; 
+	padding-left: 22px;/* Mozilla Firefox 19+ */
+} 
+header input:-ms-input-placeholder { 
+	padding-left: 22px;/* Internet Explorer 10-11 */ 
+} 
+/*section feature1*/
+.feature1 {
+	width: 100%;
+	height: 710px;
+}
+.feature1 .title{
+	width: 771px;
+	height: 143px;
+	margin: 85px 415px 82px 414px; 
+	text-align: center;
+}
+.feature1 .title p:nth-child(2) {
+	font-size: 42px;
+}
+.feature1 .detail {
+	width: 1170px;
+	margin: 0 auto;
+}
+.feature1 .lDetail,.rDetail {
+	width: 436px;	
+	float: left;
+	padding: 0 70px 0 64px;
+}
+.feature1 .rDetail {
+	margin-left: 30px;
+}
+.feature1 .item {
+	padding-bottom: 90px;
+}
+.feature1 dl {
+	display: inline;
+}
+.feature1 dt {
+	display: inline;
+	font-size: 20px;
+	font-family: "Montserrat Light";
+	vertical-align: top;
+	margin-left: 28px;
+}
+.feature1 dd {
+	margin-left: 82px;
+}
+/*section action*/
+.action {
+	position: relative;
+	width: 100%;
+	height: 800px;
+	background-image: url(../img/bg2.png);
+	 overflow: hidden; 
+}
+.action .mask {
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.5;
+}
+.action .callAction {
+	position: absolute;
+	top: 183px;
+	left: 315px;
+	width: 505px;
+	height: 432px;
+}
+.action .callAction p:nth-child(1) {
+	font-size: 40px;
+	margin-right: 135px
+}
+.action .callAction p:nth-child(2) {
+	font-size: 18px;
+	margin-right: 130px;
+}
+.action .callAction button:nth-child(3) {
+	border-radius: 2px;
+	border: 0;
+	margin-right: 30px;
+	margin-top: 114px;	
+	width: 240px;
+	height: 60px;
+    background: white;
+}
+.action .callAction button:nth-child(4) {
+	border-radius: 2px;
+    border: 1px solid white;
+	width: 235px;
+	height: 60px;
+    background: rgba(0,0,0,0)
+}
+.action .iPad {
+	position: absolute;
+	top: 104px;
+	left: 955px;
+	width: 842px;
+	border: 1px solid white;
+	border-radius: 35px;
+}
+.action .iPad .screen {
+	margin: 30px 64px 28px 60px;
+	width: 720px;
+	height: 538px;
+	border: 1px solid white;
+	border-radius: 5px;
+	background-color: white;
+	text-align: center;
+	padding-top: 32px  
+}
+.action .iPad .screen h4,h2 {
+	margin-left: 152px;
+}
+.action .iPad .screen h4 {
+	opacity: 0.6;
+}
+.action .iPad .screen ul {
+	margin-left: 58px;
+	margin-top: 70px;
+}
+.action .iPad .screen li {
+	float: left;
+	width: 178px;
+	height: 250px;
+	box-shadow: 0.5px 0.5px 5px #979191;
+	margin-right: 26px
+}
+.action .iPad .screen dt {
+	margin: 20px 0 5px 15px; 
+	text-align: left;
+	font-size: 18px;
+	font-weight: bold;
+	opacity: 0.8;
+}
+.action .iPad .screen dd {
+	margin-left: 15px;
+	text-align: left;
+	font-size: 12px;
+	opacity: 0.6;
+}
+.action .iPad .circleS {
+	position: absolute;
+	left: 30px;
+	top: 295px;
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	border: 1px solid white;
+}
+.action .iPad .circleM {
+	position: absolute;
+	right: 22px;
+	top: 295px;
+	width: 27px;
+	height: 27px;
+	border-radius: 14px;
+	border: 1px solid white;
+}
+/*section feature2*/
+.feature2 {
+	padding: 0 317px  0 322px;
+	height: 580px;	
+}
+.feature2 h1 {
+	font-size: 42px;
+	text-align: center;
+	margin-top: 100px;
+}
+.feature2 .items {
+	margin-top: 85px;
+	display: flex;
+	justify-content: space-between;
+}
+.feature2 .item {
+	width: 268px;
+}
+.feature2 .item img {
+	margin: 0 69px 40px 69px;
+}
+.feature2 .item p{
+	text-align: center;
+	font-size: 16px;
+	word-break: keep-all;
+}
+.feature3 {
+	padding: 0 304px 0 246px;
+	height: 1000px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.feature3 .item:nth-child(1){
+	margin-top: 114px;
+}
+.feature3 .item:nth-child(2){
+	margin-top: 80px;
+}
+.feature3 .item:nth-child(1) img {
+	float: left;
+	margin-right: 100px;
+}
+.feature3 .item:nth-child(2) img {
+	float: right;
+	margin-left: 100px;
+}
+.feature3 .item p:nth-child(2) {
+	padding-top: 80px; 
+	font-size: 20px;
+	font-weight: bold;
+	padding-right: 74px;
+}
+.feature3 .item p:nth-child(3) {
+	margin-top: 20px;
+	font-size: 16px;
+	padding-right: 74px;
+	line-height: 28px;
+}
+/*section team*/
+.team {
+	height: 984px;
+	padding: 100px 285px 0 292px;	
+}
+.team h1 {
+	font-size: 42px;
+	text-align: center;
+}
+.team > p {
+	font-size: 18px;
+	text-align: center;
+	margin: 35px 0 53px 0;
+}
+.team .item {
+	margin: 15px 20px 15px 20px ;
+	position: relative;
+	float: left;
+	width: 470px;
+	height: 340px;
+	cursor: pointer;
+}
+.team .item:hover .mask {
+	display: block;
+}
+.team .item:hover .infor {
+	display: block;
+}
+.team .mask {
+	display: none;
+	position: absolute;
+	opacity: 0.6;
+	width: 470px;
+	height: 340px;
+	background-color: black;
+	cursor: pointer;
+}
+.team .infor {
+	display: none;
+	width: 100%;
+	position: absolute;
+	z-index: 999;
+	text-align: center;
+	color: white;
+}
+.team .infor p:nth-child(1) {
+	margin: 110px 0 21px 0;
+	font-size: 20px;
+	font-weight: bold;
+}
+.team .infor p:nth-child(2) {
+	margin-bottom: 39px; 
+	font-size: 12px;
+}
+.team .infor img {
+	margin: 0 15px;
+}
+/*section contact*/
+.contact {
+	display: flex;
+	border-top: 1px solid #ccc;
+	height: 700px;
+}
+.contact .form {
+	margin: 70px 0 0 315px;
+	width: 460px;
+	height: 560px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+.contact h3 {
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 51px;
+}
+
+.contact input {
+	width: 360px;
+	height: 50px;	
+	margin: 30px 48px 0 48px;
+}
+.contact input:nth-child(4) {
+	height: 144px;
+}
+.contact  input[type="text"]:-ms-input-placeholder { 
+	padding-left: 21px;/* Internet Explorer 10-11 */ 
+} 
+.contact  input::-webkit-input-placeholder { 
+	padding-left: 21px;
+} 
+.contact  input:-moz-placeholder {  
+	padding-left: 21px;/* Mozilla Firefox 19+ */
+} 
+.contact  input::-moz-placeholder { 
+	color: white; 
+	padding-left: 21px;/* Mozilla Firefox 19+ */
+} 
+.contact  input:-ms-input-placeholder { 
+	padding-left: 21px;/* Internet Explorer 10-11 */ 
+} 
+.contact input[type="submit"] {
+	border-radius: 2px;
+	border: 0;
+	width: 360px;
+	background-color: #000;	
+	color: white;
+}
+.contact .contacts {
+	margin: 185px 0 0 130px;
+	width: 351px;
+}
+.contact h1 {
+	font-size: 42px;
+	font-weight: bold;
+	margin-bottom: 40px;
+}
+.contact ul {
+	margin: 70px 0 0 30px;
+}
+.contact ul li {
+	margin: 20px 0 20px 0;
+}
+.contact li:nth-child(1) {
+	list-style-image: url(../img/MapIcon.png); 
+}
+.contact li:nth-child(2) {
+	list-style-image: url(../img/PhoneICon.png); 
+}
+.contact li:nth-child(3) {
+	list-style-image: url(../img/MailIcon.png); 
+}
+footer {
+	display: flex;
+	height: 410px;
+	background-color: #000;
+	color: white;
+}
+footer a {
+	text-decoration: none;
+	color: white;
+}
+footer ul {
+	margin: 87px 130px 0 0;
+}
+footer ul:nth-child(1) {
+	margin-left: 216px;
+}
+footer ul > li {
+	margin-top: 30px;
+	font-size: 16px;
+  	font-family: "Montserrat ExtraLight";
+  	opacity: 0.3;
+}
+footer ul li:nth-child(1) {
+	margin-top: 0;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: "Montserrat Light";
+	opacity: 1;
+}
+footer .will {
+	margin-left: 100px;
+}
+
+footer img {
+	margin: 0 10px 0 10px;	
+}
