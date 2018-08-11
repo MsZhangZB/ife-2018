@@ -1,0 +1,39 @@
+body {
+	font-family: "Microsoft YaHei";
+}
+.content {
+	width: 60%;
+	min-width: 555px;
+	height: auto;
+	margin: 0 auto;
+}
+dd {
+	float: left;
+	margin: 6px 0;
+	margin-right: 30px; 
+}
+dl,dt {
+	overflow: auto;
+	zoom:1; /* 兼容IE6 */
+	clear: both;
+}
+dt {
+	font-weight: bold;
+}
+label {
+	font-weight: bold;
+	margin-right: 10px;
+}
+select {
+	position: absolute;
+	top:21px;
+	right: 50px;
+}
+#hobby {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+}
+#showHobby {
+	color: skyblue;
+}
