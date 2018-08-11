@@ -307,7 +307,7 @@ a {text-decoration: none; }
 	overflow: hidden;
 	position: relative;
 	padding-left: 30px; 
-	height: 69px;
+	height: auto;
 	border-bottom: 1px solid #ccc;
 }
 .topside p{
@@ -325,10 +325,17 @@ a {text-decoration: none; }
 	background-color: #1bb934;
 }
 .tools {
-	position: absolute;
-	top:0;
-	right: 20px;
+	/*position: absolute;*/
+	float: right;
+	margin-right: 20px;
 	line-height: 69px;
+}
+@media screen and (max-width: 1211px) { /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
+  .tools {
+  	float: left;
+  	line-height: 0px;
+  	margin: 0 0 10px 0 
+  }
 }
 .tools input {
 	width: 35px;	
