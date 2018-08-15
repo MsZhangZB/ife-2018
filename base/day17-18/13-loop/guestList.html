@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>L、Memory</title>
+</head>
+<body>
+  <div class="admitted"></div>
+  <div class="refused"></div>
+  <script>
+    var people = ['Chris', 'Anne', 'Colin', 'Terri', 'Phil', 'Lola', 'Sam', 'Kay', 'Bruce'];
+    var admitted = document.querySelector('.admitted');
+    var refused = document.querySelector('.refused');
+    admitted.textContent = 'Admit: ';
+    refused.textContent = 'Refuse: ';
+    var i = 0;
+    for(; i < people.length; i++) {
+      if(people[i] === 'Phil' || people[i] === 'Lola') {
+         refused.textContent += people[i] + ',';
+      }else {
+         admitted.textContent += people[i] + ',';
+      }
+    }
+    refused.textContent = refused.textContent.replace(/,$/,'.');
+    admitted.textContent =  admitted.textContent.replace(/,$/,'.');
+  </script>
+</body>
+</html>

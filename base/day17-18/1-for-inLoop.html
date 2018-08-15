@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>L、Memory</title>
+	<script>
+	//for-in循环常用来枚举对象的属性
+	//ECMAScript对象的属性没有顺序，因此通for-in循环输出的属性名的顺序是不可预测的。
+	//迭代的对象的变量值为null,undefined，for-in语句回抛出错误，
+	//ES5中：对这种情况不再抛出，而只是不执行循环体
+	//建议在for-in之前检测对象是否为null,undefined
+		var person = {
+			"name": "张宗斌",
+			sex: "男",
+			age: "22",
+			height: null,
+		};
+		if(Boolean(person)){
+			for(var i in person){
+				console.log(person[i]);		
+			}
+		}else {
+			console.log("对象为null,undefined")
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

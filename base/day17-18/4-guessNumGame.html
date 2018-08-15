@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>猜数字游戏</title>
+	<style>
+		body {
+			width:50%;
+			margin: 0 auto;
+			font-size: 1.25em;
+		}
+		@media screen and (max-width: 823px){
+			body {
+				width: 80%;
+				min-width: 320px;
+				margin: 0  auto;
+				font-size: 1.25em;
+			}
+			.guessField {
+				width: 85px;
+			}
+			.guesses {
+				font-size: 0.9em;
+			}
+		}		
+		.lastResult {
+			padding: 3px;
+		}
+	</style>
+</head>
+<body>
+	<h3>Number guessing game</h3>
+	<p>We have selected a random number between 1 and 100. See if you can guess it in 10 turns(轮) or less. We'll tell you if your guess was too high or too low.</p>
+	<div class="form">
+			<label for="guessField">Enter a guess:</label>
+			<input type="text" id="guessField" class="guessField" autocomplete="off">
+			<input type="submit" class="guessSubmit" value="submit">
+	</div>
+    <div class="resultParas">
+      	<p class="guesses"></p>
+      	<p class="lastResult"></p>
+      	<p class="tipMes"></p>
+  	</div>
+	<script>
+		var guessField = document.querySelector('.guessField'),
+			guessSubmit = document.querySelector('.guessSubmit'),
+			guesses = document.querySelector('.guesses'),
+			lastResult = document.querySelector('.lastResult'),
+			tipMessage = document.querySelector('.tipMes'),
+			randomNumber = Math.floor(Math.random() * 100) + 1,
+			/**
+			 * 生成一个n到m之间的随机整数
+			 * Math.random()生个一个0到1之间的随机数 左闭右开区间，意思就是包括0 不包括1
+			 * random = Math.floor(Math.random()*(m - n + 1) + n);
+			 */
+			guessCount = 1,
+			resetButton;
+		guessField.focus();//页面加载时获取焦点
+		function checkGuess() {
+			var userGuess = Number(guessField.value);
+			if(guessCount === 1) {
+				guesses.textContent = 'Previous guesses: ';
+			}
+			guesses.textContent  += userGuess + ' ';
+			if(randomNumber === userGuess) {
+				lastResult.textContent = 'Congratulations！Bingo!';
+				lastResult.style.backgroundColor = 'green';
+				tipMessage.textContent = '';
+				setGameOver();
+			} else if(guessCount === 10) {
+				lastResult.textContent = 'Game over!';
+				setGameOver();
+			} else {
+				lastResult.textContent = 'it\'s wrong!';
+				lastResult.style.backgroundColor = 'red';
+				if(randomNumber > userGuess) {
+					tipMessage.textContent = 'Last guess was too low!';
+				} else {
+					tipMessage.textContent = 'Last guess was too high!';
+				}
+			}
+			guessCount++;
+			guessField.value = '';//clear value after clicking
+		  guessField.focus();//get focus after clicking
+		}	
+		guessSubmit.addEventListener('click',checkGuess);
+
+		function setGameOver() {
+	  	guessSubmit.disabled = true;
+			guessField.disabled = true;
+			resetButton = document.createElement('button');
+			resetButton.textContent = 'start new game';
+			document.body.appendChild(resetButton); 
+			resetButton.addEventListener('click',resetGame);
+		}
+		function resetGame() {
+			guessCount = 1;
+			randomNumber = Math.floor(Math.random() * 100) + 1;
+			var clearParas = document.querySelectorAll('.resultParas p');
+			for(var i = 0 ; i < clearParas.length ; i++){
+				clearParas[i].textContent = ''; 
+			}
+			lastResult.style.backgroundColor = 'white';
+		  	resetButton.parentNode.removeChild(resetButton);
+
+		  	guessField.disabled = false;
+		  	guessSubmit.disabled = false;
+		  	guessField.value = '';
+		  	guessField.focus();
+		}
+	</script>
+</body>
+</html>

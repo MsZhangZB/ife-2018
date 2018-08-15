@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>L、Memory</title>
+	<script>
+		//try catch throw 配合一起使用
+		var txt = '';
+		//try catch 
+		try{
+			alert(y);
+		}catch(err){
+			txt = '此处有一个错误 \n\n';
+			txt += '错误提示：' + err.message + '\n\n';
+			console.log(txt);
+		}
+
+		//try catch  throw
+		var i = prompt("请输入一个5-10的值来测试",5);
+		try{
+			if(i < 5) throw "键入值不再范围内，键入的值小于5";
+			if(i > 10) throw "键入值不再范围内，键入值小于10";
+		}catch(err){
+			console.log(err);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

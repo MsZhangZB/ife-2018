@@ -1,0 +1,39 @@
+﻿事件对象：
+例如
+  function bgChange(e) {
+    var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+    e.target.style.backgroundColor = rndCol;
+    console.log(e);
+  }  
+
+  btn.addEventListener('click', bgChange);
+其中e.target就是这个事件触发的对象
+所以上面那一句等同于 this.style.backgroundColor = rndCol;
+
+表单验证时：
+e.preventDefault();通过事件对象的preventDefault函数来禁止提交数据
+
+冒泡(bubbling)与捕获(capturing)
+当一个事件发生在具有父元素的元素上素时，现代浏览器运行两个不同的阶段 - 捕获阶段和冒泡阶段。 在捕获阶段：
+          1、浏览器检查元素的最外层祖先<html>，是否在捕获阶段中注册了一个onclick事件处理程序，如果是，则运行它。
+          2、然后，它移动到<html>中的下一个元素，并执行相同的操作，然后是下一个元素，依此类推，直到到达实际点击的元素。
+在冒泡阶段：
+          1、浏览器检查实际点击的元素是否在冒泡阶段中注册了一个onclick事件处理程序，如果是，则运行它
+          2、然后它移动到下一个直接的祖先元素，并做同样的事情，然后是下一个，等等，直到它到达<html>元素
+在现代浏览器中，默认情况下所有事件程序处理都是在冒泡阶段进行注册
+
+使用stopPropagation()来阻止冒泡链的扩大
+video.onclick = function(e) {
+  e.stopPropagation();
+  video.play();
+};
+
+捕获阶段注册一个事件，那么您可以通过使用addEventListener()注册您的处理程序，并将可选的第三个属性设置为true。
+
+事件委托：
+如果你想要在大量子元素中单击任何一个都可以运行一段代码，您可以将事件监听器设置在其父节点上，并将事件监听器气泡的影响设置为每个子节点，而不是每个子节点单独设置事件监听器
+代码 "是event事件委托.html"  中的
+    ul.addEventListener('click',function (e) {
+      var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+      e.target.style.backgroundColor = rndCol;
+    })

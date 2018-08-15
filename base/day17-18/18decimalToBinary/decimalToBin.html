@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">    
+  <title>IFE ECMAScript</title>
+</head>
+<body>        
+  <input id="dec-number" type="number" placeholder="输入一个十进制非负整数">
+  <button id="trans-btn">转化为二进制</button>
+  <p id="result">运算结果:</p>
+
+  <script>
+    var transBtn = document.getElementById('trans-btn'),
+        decNumber = document.getElementById('dec-number'),
+        result = document.getElementById('result');
+    // 在这里实现你的转化方法，注意需要判断输入必须为一个非负整数
+    //此处有bug就是当数字为0.999999999...或者 0.0000000000....1等 
+    //无限接近于一个整数时候就会因为计算机存储位数引起错误 超过16位js认为他是一个整数
+    function dec2bin(decNumber) {
+      var isFloat = String(decNumber).indexOf('.');
+      var binStr = [];
+      if(decNumber >= 0 && isFloat === -1) {
+        var i = decNumber;
+        do {
+          mode = i % 2;
+          i = parseInt(i / 2);
+          binStr.unshift(mode);
+        } while(i !== 0);
+        return binStr.join('');
+      } else {
+        return '请输入一个非负整数';
+      }
+    }
+
+    transBtn.onclick = function() {
+      result.textContent = '运算结果:' + dec2bin(decNumber.value);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    li {
+      width: 100px;
+      height: 50px;
+      background-color: purple;
+      margin: 10px 0;
+    }
+  </style>
+
+</head>
+<body>
+  <ul>
+    <li>one</li>
+    <li>two</li>
+    <li>three</li>
+    <li>four</li>
+    <li>five</li>
+  </ul>
+  <script>
+    var ul = document.querySelector('ul');
+    function random(number) {
+      return Math.floor(Math.random()*number);
+    }
+    ul.addEventListener('click',function (e) {
+      var rndCol = 'rgb(' + random(255) + ',' + random(255) + ',' + random(255) + ')';
+      e.target.style.backgroundColor = rndCol;
+    })
+  </script>
+</body>
+</html>

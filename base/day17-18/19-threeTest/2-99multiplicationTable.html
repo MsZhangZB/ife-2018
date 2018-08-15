@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>L、Memory</title>
+</head>
+<body>
+  
+  <dl>
+    <dt>小练习，练习使用循环实现一个九九乘法表：</dt>
+    <dd>1：第一步，最低要求：在Console中按行输出 n * m = t</dd>
+    <dd>2：然后，尝试在网页中，使用table来实现一个九九乘法表</dd>
+  </dl>
+  <table class="table" cellpadding="5">
+    <caption>99乘法表</caption>
+  </table>
+  <script>
+    /*在控制台中输出*/
+    for(var i = 1; i <= 9; i++) {
+      var txt = '';
+      for(var j = 1; j <= i; j++) {
+        txt += j + '*' + i + '=' + i*j + ' ';
+      }
+      console.log(txt);
+    }
+    /*用table实现*/
+    var table = document.querySelector('.table');
+    for(var i = 1; i <= 9; i++) {
+      var tr = document.createElement('tr');
+      table.appendChild(tr);
+      for(var j = 1; j <= i; j++) {
+        var td = document.createElement('td');
+        td.textContent = j + '*' + i + '=' + i*j;
+        table.appendChild(td);
+      }
+    }
+  </script>
+</body>
+</html>
