@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple DOM example</title>
+    <style>
+    .highlight {
+      color: white;
+      background-color: black;
+      padding: 10px;
+      width: 250px;
+      text-align: center;
+    }
+</style>
+  </head>
+  <body>
+    <section>
+      <img src="img/dinosaur.png" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
+      <p>Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a></p> 
+    </section>
+
+    <script>
+      var link = document.querySelector('a');
+      link.textContent = 'Mozilla Developer Network';
+      link.href = 'http://www.baidu.com';
+
+      var sec = document.querySelector('section');
+      var para = document.createElement('p');
+      para.textContent = '这是一个新段落';
+      sec.appendChild(para);
+      var text = document.createTextNode('新的文本节点')
+      var linkPara = document.querySelector('p');//匹配第一个符合的元素
+      linkPara.appendChild(text);
+      var linkPara2 = linkPara.cloneNode(true);
+      
+      //cloneNode(deep)
+      //deep可选参数：是否采用深度克隆,如果为true,则该节点的所有后代节点也都会被克隆,如果为false,则只克隆该节点本身.设置我false时什么都不会拷贝，包括自己的文本节点
+      //在使用Node.appendChild()或其他类似的方法将拷贝的节点添加到文档中之前,那个拷贝节点并不属于当前文档树的一部分,也就是说,它没有父节点.
+      console.log(linkPara2.parentNode);//result is null
+      sec.appendChild(linkPara2)
+      sec.removeChild(linkPara2) // 虽然没有父节依然可以用假的父节点来删除
+      // linkPara2.parentNode.removeChild(linkPara2) // 虽然没有父节依然可以用假的父节点来删除
+    
+      //下面添加到行内样式中
+      // para.style.color = 'white';
+      // para.style.backgroundColor = 'black';
+      // para.style.padding = '10px';
+      // para.style.width = '250px';
+      // para.style.textAlign = 'center';
+      
+      //添加到CSS规则选择的类
+      para.setAttribute('class','highlight')
+    </script>
+  </body>
+</html>

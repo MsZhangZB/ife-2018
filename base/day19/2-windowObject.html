@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Window resize example</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      div {
+        box-sizing: border-box;
+        width: 100px;
+        height: 100px;
+        background-image: url(img/bgtile.png);
+        border: 10px solid white;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div>
+
+    </div>
+
+    <script>
+    var div = document.querySelector('div');
+    var HEIGHT = window.innerHeight;
+    var WIDTH = window.innerWidth;
+    div.style.height =  HEIGHT + 'px';
+    div.style.width =  WIDTH + 'px';
+    //window对象onresize属性可以用来获取或设置当前窗口的resize事件的事件处理函数
+    //在窗口大小改变之后,就会触发resize事件.
+    window.onresize = function() {
+      div = document.querySelector('div');
+      HEIGHT = window.innerHeight;
+      WIDTH = window.innerWidth;
+      div.style.height =  HEIGHT + 'px';
+      div.style.width =  WIDTH + 'px';
+    }
+    </script>
+  </body>
+</html>
