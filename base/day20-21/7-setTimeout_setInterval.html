@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    html{
+        opacity: 
+    }
+    </style>
+
+</head>
+<body>
+    <div id="fade-obj" style="width:300px;height:300px;background:#000;"></div>
+    <button id="fade-btn">淡出</button>
+
+    <script>
+    var fadeBtn = document.getElementById('fade-btn'),
+        fadeObj = document.getElementById('fade-obj');
+        opacity = 1;
+    function changeOpacity(){
+        var  btnValue = fadeBtn.textContent;
+        fadeBtn.disabled = true;
+        if (btnValue === '淡出') {
+            var btnId = setInterval(function() {
+                opacity -= 0.1;
+                opacity = Number(opacity.toFixed(1));//toFixed返回的函数是字符串 '-'影响小
+                if (opacity >= 0) {
+                    fadeObj.style.opacity = opacity;
+                }
+                if (opacity === 0){
+                    clearInterval(btnId);
+                    fadeBtn.disabled = false;
+                    fadeBtn.textContent = '淡入';
+                }
+            }, 50);        
+        } else {
+            var btnId = setInterval(function() {
+                opacity += 0.1;
+                opacity = Number(opacity.toFixed(1));//toFixed返回的函数是字符串 '+'影响大
+                if (opacity <= 1) {
+                    fadeObj.style.opacity = opacity;
+                } 
+                if (opacity === 1){
+                    clearInterval(btnId);
+                    fadeBtn.disabled = false;
+                    fadeBtn.textContent = '淡出';
+                }
+            }, 50);
+            
+        }
+    }
+    fadeBtn.addEventListener('click', changeOpacity);
+    </script>
+</body>
+</html>

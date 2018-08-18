@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .outer {background-color:#00ff00;}
+        .outer .corner {background-image:url(img/corner.png);}
+        .outer {position: relative; padding:17px; margin:10px 0;}
+        .corner {position: absolute; width: 17px; height: 17px;}
+        .tl {top:0; left:0; background-position:-1px -1px;} 
+        .tr {top:0; right:0; background-position:-17px -1px;} 
+        .br {bottom:0; right:0; background-position:-17px -17px;}
+        .bl {bottom:0; left:0; background-position:-1px -17px;}
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <strong>My content in roundedBox Type 1</strong>   
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner br"></div>
+        <div class="corner bl"></div>
+    </div>
+</body>
+</html>

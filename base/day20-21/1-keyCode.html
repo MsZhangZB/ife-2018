@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input id="name" type="text">    
+    <button id="submit-btn">Submit</button>
+    <script>
+    var submitBtn =document.getElementById('submit-btn');
+        input = document.getElementById('name')
+    submitBtn.onclick = function() {
+        console.log(input.value);
+    } 
+    input.addEventListener('keydown', function(e) {
+        if (e.keyCode === 13) {
+            console.log(input.value);
+        }
+    })
+    input.addEventListener('keydown', function(e) {
+        if (e.keyCode === 27) {
+            console.log(input.value = '');
+        }
+    })
+    //e.keyCode获取按下的键盘按键Unicode值
+    //String.fromCharCode(x) 将值转换为字符
+    </script>
+</body>
+</html>

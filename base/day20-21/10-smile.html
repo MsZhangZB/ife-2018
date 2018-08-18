@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .smile {
+            width: 480px; 
+            height: 480px;
+            background-image: url(img/smile.jpg);
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div class="smile"></div>
+    <script>
+        function smileGo() {
+            var smile = document.querySelector('.smile');
+                Y = 0;
+                flag = 0;
+            setInterval(function() {
+                switch(flag) {
+                    case 0: 
+                        smile.style.backgroundPositionY = Y + 'px';
+                        Y = Y - 480 ;
+                        if (Y === -7680) {
+                            flag = 1;
+                        }
+                        break;
+                    case 1: 
+                        smile.style.backgroundPositionY = Y + 'px';
+                        Y = Y + 480 ;
+                        if (Y === 0) {
+                            flag = 0;
+                        }
+                        break;
+                }
+            },100);            
+        }
+        smileGo()
+    </script>
+</body>
+</html>
