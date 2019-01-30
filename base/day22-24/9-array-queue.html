@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用数组实现队列</title>
+</head>
+<body>
+    <input id="queue-input" type="text">
+    <p id="queue-cont">队列内容：apple-&gt;pear</p>    
+    <button id="in-btn">入队</button>
+    <button id="out-btn">出队</button>
+    <button id="front-btn">打印队头元素内容</button>
+    <button id="empty-btn">判断队列是否为空</button>
+    <!--
+    基于以上代码，实现如按钮中描述的功能：
+    实现如阅读材料中，队列的相关入队、出队、获取队头、判空的操作
+    队头对应数组中最后一个元素
+    入队和出队操作后，需要在 id 为 queue-cont 的 p 标签中更新显示队列中的内容，队头在最右侧，中间用 -> 连接（练习使用数组的join方法）
+    -->
+    <!--
+        队列：先进先出
+        队列是一种特殊的线性表，特殊之处在于它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。
+    -->
+    <script>
+        var queue = ["apple", "pear"];
+        var inBtn_node = document.getElementById('in-btn'),
+            outBtn_node = document.getElementById('out-btn'),
+            frontBtn_node = document.getElementById('front-btn'),
+            emptyBtn_node = document.getElementById('empty-btn'),
+            queueCont_node = document.getElementById('queue-cont'),
+            queueInput_node = document.getElementById('queue-input');
+        function refreshQueue(node, arr) {
+            var str = arr.join('->');
+            node.innerText = '队列内容：' + str;
+        }
+        function isEmpty(arr) {
+            return arr.length > 0 ? 0 : 1;
+        }
+        inBtn_node.onclick = function() {
+            if(queueInput_node.value !== '') {
+                queue.unshift(queueInput_node.value);  
+                refreshQueue(queueCont_node, queue);
+            }
+            queueInput_node.value = '';
+            queueInput_node.focus();
+        }
+        outBtn_node.onclick = function() {
+            if(isEmpty(queue) !== 1) {
+                queue.pop();  
+                refreshQueue(queueCont_node, queue);  
+            } else {
+                queueCont_node.innerText = '当前队列为空不能操作';
+            }     
+            queueInput_node.value = '';
+            queueInput_node.focus();
+        }
+        frontBtn_node.onclick = function() {
+           if(isEmpty(queue) !== 1) {
+                queueCont_node.innerText = '当前队列对头元素内容是：' + queue[queue.length - 1];
+           } else {
+               queueCont_node.innerText = '当前队列为空不能操作';
+           }     
+           queueInput_node.value = '';
+           queueInput_node.focus(); 
+        }
+        emptyBtn_node.onclick = function() {
+            if(isEmpty(queue) === 1) {
+                queueCont_node.innerText = '空队列';
+            } else {
+                queueCont_node.innerText = '不是空队列';
+            }
+            queueInput_node.value = '';
+            queueInput_node.focus();
+        }
+        
+    </script>
+    
+</body>
+</html>

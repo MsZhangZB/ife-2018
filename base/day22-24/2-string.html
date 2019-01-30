@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <title>string</title>
+</head>
+<body>
+  <div>
+    <label>String A:
+      <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+    </label>
+    <textarea id="str-a"></textarea>
+    <label>String B:
+        <input id="radio-b" type="radio" name="str-obj" value="b">
+    </label>
+    <textarea id="str-b"></textarea>        
+    <label>Num A：<input id="num-a" type="number" value="0"></label>
+    <label>Num B：<input id="num-b" type="number" value="1"></label>
+  </div>
+  <div>
+    <button>获取当前选中输入的内容长度</button>
+    <button>当前选中输入中的第3个字符</button>
+    <button>把两个输入框的文字连接在一起输出（concat）</button>
+    <button>输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+    <button>输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+    <button>使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+    <button>当前选中输入框的行数</button>
+    <button>使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+    <button>把所选输入框中的内容全部转为大写</button>
+    <button>把所选输入框中的内容全部转为小写</button>
+    <button>把所选输入框中内容的半角空格全部去除</button>
+    <button>把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+  </div>
+  <p id="result"></p>
+</body>
+<script>
+  var btns = document.querySelectorAll('button'),
+      result = document.getElementById('result'),
+      radios = document.getElementsByName('str-obj');
+  //返回单选按钮选中的或者全选
+  function getStr(all) {
+    var strA = document.querySelector('#str-a').value,
+        strB = document.querySelector('#str-b').value;
+    var arrStr  = [strA, strB];
+    if (all) {
+      return arrStr;
+    }
+    for (var i = 0; i < radios.length; i++) { 
+      if (radios[i].checked == true) {  
+        val = radios[i].value;
+        if (val === 'a') {
+          return strA;
+        } else {
+          return strB;
+        }           
+      }
+    }
+  }
+  function isNull() {
+    if (getStr() === '') {
+      result.textContent = '你输入的内容为空！';
+      return 0;
+    } else {
+      result.textContent = '你输入的内容为空！';
+      return 1;
+    }
+  }
+  function getNum() {
+    var numA = document.getElementById('num-a').value,
+        numB = document.getElementById('num-b').value;
+    var arrNum = [numA, numB];
+    return arrNum;
+  }
+
+  //返回选中字符的长度
+  function getStrLen() {
+    result.textContent = getStr().length;
+  }
+  btns[0].onclick = getStrLen;
+
+  //返回选中字符的第三个字符
+  function getThridChar() {
+    result.textContent = getStr()[2];
+  }
+  btns[1].onclick = getThridChar;
+
+  //concat连接两个字符
+  function concatStr() {
+    var strA = getStr(true)[0];
+    var strB = getStr(true)[1];
+    result.textContent = strA.concat(strB);
+  }
+  btns[2].onclick = concatStr;
+
+  //输出B中内容在A中第一次出现的位置
+  function getIndexOfbIna() {
+    var strA = getStr(true)[0],
+        strB = getStr(true)[1],
+        index =  strA.indexOf(strB);
+    index >= 0 ? result.textContent = '\"' + strB + '\"' + '内容在' + '\"' + strA + '\"' + '中第一次出现的位置是：' + index :  result.textContent = 'A没有包括B';
+    
+  }
+  btns[3].onclick = getIndexOfbIna;
+
+  //输出a中内容在B中最后yi次出现的位置
+  function getlastIndexOfaInb() {
+    var strA = getStr(true)[0],
+        strB = getStr(true)[1],
+        index =  strB.lastIndexOf(strA);
+    index >= 0 ? result.textContent = '\"' + strA + '\"' + '内容在' + '\"' + strB + '\"' + '中最后一次出现的位置是：' + index :  result.textContent = 'A没有包括B';
+    
+  }
+  btns[4].onclick = getlastIndexOfaInb;
+
+  //使用slice获取选中输入框内容的部分内容，参数为num-a及num-b
+  function getSliceStr() {
+    var numA = getNum()[0];
+        numB = getNum()[1];
+    result.textContent = getStr().slice(numA,numB);
+  }
+  btns[5].onclick = getSliceStr;
+  
+  //返回选中的行数
+  function getRows() {  
+    console.log(getStr().split('\n'))
+    result.textContent = getStr().split('\n').length;
+  }
+  btns[6].onclick = getRows;
+
+  //使用substr获取选中输入框内容的子字符串，参数为num-a及num-b
+  function getSubstr() {  
+    var numA = getNum()[0];
+        numB = getNum()[1];
+    result.textContent = getStr().substr(numA,numB);
+  }
+  btns[7].onclick = getSubstr;
+
+  //把所选输入框中的内容全部转为大写
+  function changeUpperCase() {  
+    result.textContent = getStr().toUpperCase();
+  }
+  btns[8].onclick = changeUpperCase;
+
+  //把所选输入框中的内容全部转为小写
+  function changeLowerCase() {  
+    result.textContent = getStr().toLowerCase();;
+  }
+  btns[9].onclick = changeLowerCase;
+
+  //删除空格
+  function clearSpace() {  
+    result.textContent = getStr().replace(/\s+/g, '');
+  }
+  btns[10].onclick = clearSpace;
+
+  //所选输入框中内容的a全部替换成另外一个输入框中的内容
+  function repaceAtoB() {  
+    var strB = getStr(true)[1],
+        textA = document.querySelector('#str-a');
+    textA.value = strB;
+  }
+  btns[11].onclick = repaceAtoB;
+</script>
+</html>

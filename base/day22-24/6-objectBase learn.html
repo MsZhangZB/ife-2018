@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ch">
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Object-oriented JavaScript example</title>
+</head>
+
+<body>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+</body>
+  <script>
+    //第一版
+    // function createNewPerson(name) {
+    //   var obj = {};
+    //   obj.name = name;
+    //   obj.greeting = function() {
+    //     alert('Hi! I\'m ' + this.name + '.');
+    //   };
+    //   return obj;
+    // }
+    //第二版  构造函数名称通常以大写字母开头 - 此约定用于使构造函数更容易在代码中识别。
+    // function Person(name) {
+    //   this.name = name;
+    //   this.greeting = function() {
+    //     alert('Hi! I\'m ' + this.name + '.');
+    //   };
+    // }
+    // var person1 = new Person('Bob');
+    // var person2 = new Person('Sarah');
+    //第三版
+    function Person(first, last, age, gender, interests) {
+      this.name = {
+        'first': first,
+        'last' : last
+      };
+      this.age = age;
+      this.gender = gender;
+      this.interests = interests;
+      this.bio = function() {
+        alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+      };
+      this.greeting = function() {
+        alert('Hi! I\'m ' + this.name.first + '.');
+      };
+    }
+    var person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+    var p = document.querySelector('p');
+    p.onclick = function() {
+      alert("fff")
+    }
+  </script>
+</html>

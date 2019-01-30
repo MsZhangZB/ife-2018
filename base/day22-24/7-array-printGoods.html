@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="output">
+        <ul></ul>
+        <p></p>
+    </div>
+    <script>
+        var list = document.querySelector('.output ul');
+        var totalBox = document.querySelector('.output p');
+        var total = 0;
+        list.innerHTML = '';
+        totalBox.textContent = '';
+        // number 1
+        var products = ['Underpants:6.99', 'Socks:5.99', 'T-shirt:14.99', 'Trousers:31.99', 'Shoes:23.99'];
+                        
+        var len  = products.length;
+        for (var i = 0; i < len; i++) { // number 2
+          // number 3
+          var item = products[i].split(':');
+          var productsName = item[0];
+          var productsPrice = item[1] * 1; //乘1的作用是productsPrice转化为数字类型
+          // number 4
+          total += productsPrice;
+          // number 5
+          itemText = productsName + ' - $ ' + productsPrice;
+          var listItem = document.createElement('li');
+          listItem.textContent = itemText;
+          list.appendChild(listItem);
+        }
+        totalBox.textContent = 'Total: $' + total.toFixed(2);
+    </script>
+</body>
+</html>

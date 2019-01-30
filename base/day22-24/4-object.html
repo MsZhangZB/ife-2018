@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+      var tree = {
+        "id": 0,
+        "name": "root",
+        "left": {
+          "id": 1,
+          "name": "Simon",
+          "left": {
+            "id": 3,
+            "name": "Carl-1",
+            "left": {
+              "id": 7,
+              "name": "Lee",
+              "left": {
+                "id": 11,
+                "name": "Fate"
+              }
+            },
+            "right": {
+              "id": 8,
+              "name": "Annie",
+              "left": {
+                "id": 12,
+                "name": "Saber"
+              }
+            }
+          },
+          "right": {
+            "id": 4,
+            "name": "Tony",
+            "left": {
+              "id": 9,
+              "name": "Candy"
+            }
+          }
+        },
+        "right": {
+          "id": 2,
+          "name": "right",
+          "left": {
+            "id": 5,
+            "name": "Carl-2",
+          },
+          "right": {
+            "id": 6,
+            "name": "Carl-3",
+            "right": {
+              "id": 10,
+              "name": "Kai"
+              }        
+          }
+        }
+      }
+
+      // 假设id和name均不会重复，根据输入name找到对应的id
+      function findIdByName(name) {
+        var result = {};
+        var setId = function(obj) {
+          result[obj.name] = obj.id;
+          if(obj.hasOwnProperty('left')) {
+            setId(obj.left);
+          }
+          if(obj.hasOwnProperty('right')) {
+            setId(obj.right);
+          }
+        };    
+        setId(tree);
+        return result.hasOwnProperty(name) ? name + '对应的id是:' + result[name] : name + ' is not exist';
+      }
+
+      // 假设id和name均不会重复，根据输入id找到对应的name
+      function findNameById(id) {
+        var result = {};
+        var setName = function(obj) {
+          result[obj.id] = obj.name;
+          if(obj.hasOwnProperty('left')) {
+            setName(obj.left);
+          }
+          if(obj.hasOwnProperty('right')) {
+            setName(obj.right);
+          }
+        };    
+        setName(tree);
+        return result[id] ? id + '对应的name是:' + result[id] : id + ' is not exist';
+      }
+
+      // 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
+      function getListWithDLR() {
+        var result = [];
+        var setId = function(obj) {
+          result.push(obj.name);
+          if(obj.hasOwnProperty('left')) {
+            setId(obj.left);
+          }
+          if(obj.hasOwnProperty('right')) {
+            setId(obj.right);
+          }
+        };    
+        setId(tree);
+        return result;
+      }
+      console.log('前序遍历结果：', getListWithDLR());
+      // 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
+      function getListWithLDR() {
+       var result = [];
+       var setId = function(obj) {
+         if(obj.hasOwnProperty('left')) {
+           setId(obj.left);
+         }
+         result.push(obj.name);
+         if(obj.hasOwnProperty('right')) {
+           setId(obj.right);
+         }
+         
+       };    
+       setId(tree);
+       return result;
+      }
+      console.log('中序遍历结果：', getListWithLDR());
+      // 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
+      function getListWithLRD() {
+        var result = [];
+        var setId = function(obj) {
+          if(obj.hasOwnProperty('left')) {
+            setId(obj.left);
+          }
+          if(obj.hasOwnProperty('right')) {
+            setId(obj.right);
+          }
+          result.push(obj.name);
+        };    
+        setId(tree);
+        return result;
+      }
+      console.log('后序遍历结果：', getListWithLRD());
+    </script>
+</body>
+</html>
