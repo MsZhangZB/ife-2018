@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>root go function</title>
+</head>
+<body>
+    <h1>函数封装</h1>
+   <script>
+    /*
+    我们假设要在某种特殊的机器人上写代码，但是这个机器人本身只实现了以下两个方法（函数）：
+        Go，表示向当前方向前进一步
+        TurnLeft，表示向左转
+    那么向右转：通过三次向左转来实现
+     */
+    function go() {
+        //前进
+    }
+    function TurnLeft() {
+        //向左转
+    }
+    /*
+    需求一:
+        我需要这个机器人，向前一步，然后向右转，向前两步，再向右转，向前一步，再向右转，向前三步，再向右转，那代码变为：
+     */
+    go();
+    TurnLeft();
+    TurnLeft();
+    TurnLeft();
+    go();
+    go();
+    TurnLeft();
+    TurnLeft();
+    TurnLeft();
+    go();
+    TurnLeft();
+    TurnLeft();
+    TurnLeft();
+    go();
+    go();
+    go();
+    TurnLeft();
+    TurnLeft();
+    TurnLeft();
+    /*
+        把上面代码一些重复的地方封装为一个函数 把向右转： TurnRight()
+        因此上面代码就变成
+     */
+    function TurnRight() {
+        TurnLeft();
+        TurnLeft();
+        TurnLeft();
+    }
+    go();
+    TurnRight();
+    go();
+    go();
+    TurnRight();
+    go();
+    TurnRight();
+    go();
+    go();
+    go();
+    TurnRight();
+    /*
+    需求二：前进4步，向右转，前进8步向右转，前进20步向右转……
+    因此可以封装： 
+        function GoSteps(n) {
+            while (n--) {
+                Go();
+            }
+        }
+     */
+    /*
+    当然上面的GoSteps函数目前是不严谨的，我们必须考虑更多的问题，比如传入参数的正确性和合法性，比如传入的参数是不是数字，是不是正整数，现在请你自己写一个GoSteps函数，然后跑通下面的测试用例。
+     */
+    
+    function Go() {
+        console.log("Go");
+    }
+
+    function GoSteps(n) {
+        n = n === undefined ? 1 : n; //设置默认值 如果不传递参数n = 1
+        n = parseInt(n * 1); //n * 1先把n转为数字类型 再用parseInt()取整
+        while(n > 0) {//这里不能用： n-- 原因是负数转为boolean值是true
+            Go();
+            n--;
+        }
+    }
+
+    GoSteps(10); // Go 10次
+    GoSteps(1); // Go 1次
+    GoSteps(); // Go 1次，认为缺少参数时，默认参数为1
+    GoSteps(0);  // 0次
+    GoSteps(-1);  // 0次
+    GoSteps(1.4);  // Go 1次
+    GoSteps(1.6);  // Go 1次
+    GoSteps(-1);  // 0次
+    GoSteps(true);  // Go 1次
+    GoSteps(false);  // 0次
+    GoSteps("Test");  // 0次
+    GoSteps(NaN);  // 0次
+    GoSteps(null);  // 0次
+   </script> 
+</body>
+</html>

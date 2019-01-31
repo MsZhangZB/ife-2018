@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Function scope example</title>
+</head>
+<body>
+  
+  <script>
+    var x = 1;
+    function a() {
+      var y = 2;
+      output(y);
+      //output(z); output(y) ReferenceError: z is not defined"
+    }
+    function b() {
+      var z = 3;
+      output(z);
+      //output(y); output(y) ReferenceError: y is not defined"
+    }
+    function output(value) {
+      var para = document.createElement('p');
+      document.body.appendChild(para);
+      para.textContent = 'Value: ' + value;
+    }
+    //output(y) ReferenceError: y is not defined"
+    //output(z) ReferenceError: z is not defined"
+    /*
+      ReferenceError：“x”未定义错误是您遇到的最常见的错误。如果您收到此错误，并且确定您已经定义了该问题的变量，请检查它的范围。
+     */
+  </script>
+</body>
+</html>

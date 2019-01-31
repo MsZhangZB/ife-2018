@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>simple clock </title>
+</head>
+<body>
+    <p id="one-time"></p>
+    <p id="two-time"></p>
+    <script>
+    /*
+    setTimeout()与setInterval()
+    >setTimeout()延迟调用 能通过clearTimeout(id)
+    >setInterval()间歇调用 能通过clearInterval(id)
+    注意点：我们一般用通过递归调用加上setTimeout()来实现setInterval()效果
+     */
+    
+    /*
+    我们现在来做一个最简单的时钟，通过小练习来学习 Date，复习定时，然后再练习一下函数的封装
+    具体需求如下：
+
+    在页面中显示当前日期及时间，按秒更新
+    格式为 YYYY 年 MM 月 DD 日 星期 D HH:mm:ss
+    注意位数的补齐，比如：
+    -- 假设时间为2008年10月10日星期一的12点12分12秒，显示2008年10月10日星期一 12:12:12
+    -- 假设时间为2008年1月1日星期一的3点2分2秒，显示2008年01月01日星期一 03:02:02
+    编码过程中，我们希望你注意对函数的封装，尽量让一个函数就做一个事情，而不要把所有的功能、代码揉在一起：
+
+    封装一个函数，来根据某个日期返回这一天是星期几
+    封装一个函数，把月、日、小时等出现个位数的情况前面补充0，补充为两位，比如1变为01
+    封装一个函数，把最后的日期时间，按照要求的格式进行包装
+    可能不止上面这些，尽可能地进行功能的解耦和拆解
+     */
+    
+    /**
+     * [addZero 对于月、日、时、分、秒数个位数前面添加0]
+     * @param {[string]} str [月、日、时、分、秒数]、
+     * return {[string]} [返回格式化之后值]
+     */
+    function addZero (str) {
+        return str < 10 ? '0' + str : str;
+    }
+    /**
+     * [returnWeek 返回对应日期的格式化星期]
+     * @param  {[object]} date [Date对象的一个实例]
+     * @param  {[string]} how [如何显示星期 默认为中文]
+     * @return {[string]}      [日期对于的格式化星期]
+     */
+    function getFormatWeek (date, how) {
+        var weeks = ['日', '一', '二', '三', '四', '五', '六'];
+        var weeks_en = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var week = date.getDay();
+        if(how === 'en') {
+            weeks = weeks_en;
+            return weeks[week];
+        }
+        return '星期' + weeks[week];
+    }
+    /**
+     * [getFormatDate 对日期格式化]
+     * @param  {[object]} date [要格式化的目标日期]
+     * @param  {[string]} separator [日期之间的分隔符号 默认分别用年月日来分割]
+     * @param  {[string]} how [星期用那种语言显示]
+     * @return {[string]}      [格式化之后的日期]
+     */
+    function getFormatDate (date, separator, how) {
+        var year =  addZero(date.getFullYear()),
+            month = addZero(date.getMonth() + 1),
+            day = addZero(date.getDate()),
+            week = getFormatWeek(date, how),
+            str = year + '年' + month + '月' + day + '日 ' + week + ' ';
+        if(separator) {
+            str = year + separator + month + separator + day + ' ' + week + ' ';
+        }
+        return str;
+    }
+    /**
+     * [getFormatTime 对时间格式化]
+     * @param  {[object]} date [要格式化的目标时间]
+     * @param  {[boolean]} hoursystem [时间的显示制度 默认为24小时制]
+     * @return {[string]}      [格式化之后的日期]
+     */
+    function getFormatTime (date, hoursystem) {
+        var hours = addZero(date.getHours()),    
+            minutes = addZero(date.getMinutes()),
+            seconds = addZero(date.getSeconds()),
+            time = date.toLocaleTimeString();
+            str = hours + ':' + minutes + ':' + seconds;
+        if(hoursystem === 12) {
+            time = time.indexOf('上午') !== -1 ? time + ' AM' : time + ' PM';
+            str = time.slice(2);
+        }
+        return str;
+    }
+
+    /**
+     * [printToday 在页面上显示当前时间]
+     * @param  {[element]} node [日期需要插入到的元素]
+     * @param  {[number]} how  [用那种方式显示]
+     * @return {[object]} [返回当前日期对象的实例]
+     */
+    function printToday (node, how) {
+        var today = new Date();//获取当前的时间
+        var datestr = '';//存储完整格式化时间str
+        var timer = 0;//计时器id
+        switch(how) {
+            case 1: {
+                datestr = getFormatDate(today) + getFormatTime(today);            
+                timer = setTimeout(function () {
+                    printToday(node, 1);
+                }, 1000);
+                break;
+            };
+            case 2 : {
+                datestr = getFormatDate(today, '-', 'en') + getFormatTime(today, 12);
+                timer = setTimeout(function () {
+                    printToday(node, 2);
+                }, 1000);
+                break;
+            }
+        }
+        node.innerText = datestr;
+        return today
+        
+    }
+    //用递归调用来实现setInterval()的效果
+    var onetime = document.getElementById('one-time'),
+        twotime = document.getElementById('two-time');
+    printToday(onetime, 1);
+    printToday(twotime, 2)
+    
+
+    /*
+    完成上面需求后，现在需求做一些小的变更
+
+    输出格式变为：2008-10-10 Monday 07:10:30 PM
+     */
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Date对象</title>
+</head>
+<body>
+    <script>
+    //使用Date()来获取当前的时间
+    document.write('Date(): ' + Date() + '<br />');
+    //使用getTime()获取1970/01/01至今的毫秒数
+    var data = new Date();
+    document.write('getTime(): ' + data.getTime() + '<br />');
+    //使用setFullYear()设置具体的日期
+    data.setFullYear(1970/01/01);
+    document.write('setFullYear(): ' + data + '<br />');
+    //使用 toUTCString() 将当日的日期（根据 UTC）转换为字符串
+    document.write('toUTCString(): ' + data.toUTCString() + '<br />');
+    //getDay()返回星期数 0 - 6
+    var myDate=new Date();
+    myDate.setFullYear(2008,8,9);
+
+    var today = new Date();
+
+    if (myDate>today) {//实际上比较的是毫秒数
+        alert("Today is before 9th August 2008");
+    }
+    else {
+        alert("Today is after 9th August 2008");
+    }
+
+
+    // parse() 方法可解析一个日期时间字符串，并返回 1970/1/1 午夜距离该日期时间的毫秒数。
+    // Date.parse() 是 Date 对象的静态方法。
+    //将取得从 1970/01/01 到 2005/07/08 的毫秒数：
+    var d = Date.parse("Jul 8, 2005")
+    //获取get(set)Year()请用get(set)FullYear()
+    </script>
+</body>
+</html>

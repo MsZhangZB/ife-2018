@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <select id="year-select">
+
+    </select>
+
+    <select id="month-select">
+    </select>
+
+    <select id="day-select">
+        
+    </select>
+
+    <select id="hour-select">
+       
+    </select>
+
+    <select id="minite-select">
+        
+    </select>
+
+    <select id="second-select">
+        
+    </select>
+
+    <p id="result-wrapper"></p>
+
+    <!--
+    使用上方的HTML结构（可以根据需要自行微调）为基础编写JavaScript代码
+    当变更任何一个select选择时，更新 result-wrapper 的内容
+    当所选时间早于现在时间时，文案为 现在距离 "所选时间" 已经过去 xxxx
+    当所选时间晚于现在时间时，文案为 现在距离 "所选时间" 还有 xxxx
+    注意当前时间经过所选时间时候的文案变化
+    注意选择不同月份的时候，日期的可选范围不一样，比如1月可以选31天，11月只有30天，注意闰年
+    同样，需要注意，通过优雅的函数封装，使得代码更加可读且可维护
+    -->
+    <script>
+        var year = document.getElementById('year-select'),
+            month = document.getElementById('month-select'), 
+            day = document.getElementById('day-select'), 
+            hour = document.getElementById('hour-select'),
+            minite = document.getElementById('minite-select'),
+            second = document.getElementById('second-select'),
+            result = document.getElementById('result-wrapper');
+        /**
+         * [outPut 生成年份[小时] [分钟] [秒数]]
+         * @param  {[element]} node     [添加的位置]
+         * @param  {[number]} startnum [开始数]
+         * @param  {[number]} endnum   [结束数]
+         * @return {[undefined]}          [undefined]
+         */
+        function outPut (node, startnum, endnum) {
+            var str = '';
+            for (var i = startnum; i <= endnum; i++) {
+                str += '<option value=' + i + '>' + i + '</option>';
+            }
+            node.innerHTML = str;
+        }
+        /**
+         * [outMonth 在对应element生成月份]
+         * @param  {[element]} node [月份添加的位置]
+         * @return {[undefined]}       [undefined]
+         */
+        function outMonth (node) {
+            var str = '';
+            for (var i = 1; i <= 12; i++) {
+                str += '<option value=' + (i - 1) + '>' + i + '</option>';
+            }
+            node.innerHTML = str;
+        }     
+        outPut(year, 2000, 2032); //输出指定的年份
+        outMonth(month); //输出月份
+        outPut(hour, 0, 23); //输出小时
+        outPut(minite, 0, 59); //输出分钟
+        outPut(second, 0, 59); //输出秒
+
+        /**
+         * [outDay 在对应element生成天数]
+         * @param  {[element]} node  [天数添加的位置]
+         * @param  {[number]} year  [年份]
+         * @param  {[number]} month [月份]
+         * @return {[undefined]}       [undefined]
+         */
+        function outDay (node, year, month) {
+            var data = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; //存储月份数
+            var str = '';
+            if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+                data[1] = data[1] + 1; //闰年让二月份的天数+1
+            }
+            for (var i = 1; i <= data[month]; i++) {
+                str += '<option value=' + i + '>' + i + '</option>';
+            }
+            node.innerHTML = str
+        }
+        outDay(day, year.value, month.value);//根据用户设置的年份月份来输出天数
+
+        /**
+         * [getCalcDate 根据用户设置生成相应的时间对象]
+         * @return {[object]} [用户设置的时间所对应时间对象]
+         */
+        function getCalcDate() {
+            var calcdate = new Date(year.value, month.value, day.value);
+            calcdate.setHours(hour.value);
+            calcdate.setMinutes(minite.value);
+            calcdate.setSeconds(second.value);
+            return calcdate;
+        }  
+        /**
+        * [getFormatTime 格式化时间]
+        * @param  {[object]} date [需要格式化的时间对象]
+        * @return {[string]}      [格式化之后时间对象的时间部分]
+        */      
+        function getFormatTime (date) {
+           var hours = addZero(date.getHours()),    
+               minutes = addZero(date.getMinutes()),
+               seconds = addZero(date.getSeconds()),
+               time = date.toLocaleTimeString();
+               str = hours + ':' + minutes + ':' + seconds;
+           return str;
+       }
+       /**
+        * [getFormatDate 格式化日期]
+        * @param  {[object]} date [需要格式化的时间对象]
+        * @return {[string]}      [格式化之后时间对象的日期部分]
+        */
+       function getFormatDate (date) {
+           var year =  addZero(date.getFullYear()),
+               month = addZero(date.getMonth() + 1),
+               day = addZero(date.getDate()),
+               week = getFormatWeek(date);
+            var str = year + '年' + month + '月' + day + '日 ' + week + ' ';
+           return str;
+       }
+
+        /**
+         * [addZero 对数字是个位数的前面加0]
+         * @param {[string]} str [返回加零的字符串]
+         */
+        function addZero (str) {
+           return str < 10 ? '0' + str : str;
+        }
+        /**
+         * [getFormatWeek 格式化星期]
+         * @param  {[object]} date [需要格式化的时间对象]
+         * @return {[string]}      [格式化之后的星期]
+         */
+        function getFormatWeek (date) {
+           var weeks = ['日', '一', '二', '三', '四', '五', '六'];
+           var week = date.getDay();
+           return '星期' + weeks[week];
+        }
+        /**
+         * [returnDate 返回指定日期格式化之后的的字符]
+         * @param  {[object]} data [指定的日期对象]
+         * @return {[string]}      [指定日期格式化之后的字符串]
+         */
+        function returnDate(data) {
+            var str = getFormatDate(data) + getFormatTime(data);
+            return str;
+        }
+        /**
+         * [dateDifference 计算日期差数 并且输出指定字符串]
+         * @param  {[object]} nowdate [浏览器当前时间对象]
+         * @param  {[object]} aimdate [目标时间对象]
+         * @return {[undefined]}         [undefined]
+         */
+        function dateDifference(nowdate, aimdate) { 
+           var dateSpan = 0, //时间差毫秒数
+               days = 0, //时间差的天数
+               hours = 0, //时间差的小时数
+               minutes = 0, //时间差的分钟数
+               seconds = 0, //时间差的秒数
+               isOld = '',
+           dateSpan = nowdate - aimdate,
+           tempDate = dateSpan,
+           dateSpan = Math.abs(dateSpan);
+           days = Math.floor(dateSpan / (24 * 3600 * 1000)) + '天';
+           var leave1 = dateSpan % (24 * 3600 * 1000); //计算天数后剩余的毫秒数
+           hours = Math.floor(leave1 / (3600 * 1000)) + '小时';
+
+           var leave2 = leave1 % ( 3600 * 1000); //计算小时数后剩余的毫秒数
+           minutes = Math.floor(leave2 / (60 * 1000)) + '分钟';
+
+           var leave3 = leave2 % (60 * 1000); //计算小时数后剩余的毫秒数
+           seconds = Math.floor(leave3 / 1000) + '秒';
+           isOld = tempDate >= 0 ? ' 已经过去' : ' 还有';
+           result.innerText = '现在距离所选时间: '+ returnDate(aimdate) + isOld + days + hours + minutes + seconds;
+        }
+        /**
+         * [refresh 每秒自动更新文案 通过serTimeout()来实现间歇调用的效果]
+         * @return {[undefined]} [undefined]
+         */
+        function refresh () {
+            var timer1 = setTimeout(function() {
+                var nowday = new Date();
+                dateDifference(nowday.getTime(), getCalcDate());
+                refresh()
+            }, 1000);
+        }
+        refresh();
+
+        year.onchange = function () {
+            outDay(day, year.value, month.value);
+            var nowday = new Date()
+            var aimdate = getCalcDate()
+            dateDifference(nowday, aimdate);
+        }
+        month.onchange = function () {
+            outDay(day, year.value, month.value);
+            var nowday = new Date()
+            var aimdate = getCalcDate()
+            dateDifference(nowday, aimdate);
+        }
+        day.onchange = function () {
+            var nowday = new Date()
+            var aimdate = getCalcDate()
+            dateDifference(nowday, aimdate);
+        }
+        hour.onchange = function () {
+            var nowday = new Date()
+            var aimdate = getCalcDate()
+            dateDifference(nowday, aimdate);
+        }
+        minite.onchange = function () {
+            var nowday = new Date()
+            var aimdate = getCalcDate()
+
+            dateDifference(nowday, aimdate);
+        }
+        second.onchange = function () {
+            var nowday = new Date()
+            var aimdate = getCalcDate()
+            dateDifference(nowday,aimdate);
+        }
+        
+    </script>
+</body>
+</html>
