@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #email-input {
+            text-indent: 10px;
+        }
+        ul, li {
+            margin: 0; 
+            padding: 0;
+            list-style: none;
+        }
+        .email-sug {
+            width: 171px;
+            border: 1px solid #ccc;
+            border-top: none;
+            display: none;
+            overflow: hidden;
+        }
+        .email-sug li {
+            padding-left: 10px;
+        }
+        .email-sug li:hover {
+            background-color: #bfddec; 
+            cursor: pointer;
+        }
+        .nowselect {
+            background-color: #ffc4ce;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <input id="email-input" type="text">
+        <ul id="email-sug-wrapper" class="email-sug"></ul>
+    </div>
+    <script src="utils.js"></script>
+    <script>
+        
+    /*
+    需求-1
+        根据下面需求实现如示意图所示的邮箱输入提示功能，注意，根据要求只需实现下面功能
+
+        当用户没有任何输入时，提示框消失
+        当用户输入字符后，显示提示框，并且把用户输入的内容自动拼上邮箱后缀进行显示
+        暂时不用考虑示意图中的红色和蓝色背景色的逻辑
+        注意用户输入中前后空格需要去除
+
+    流程：
+        发现用户输入->获取用户输入内容->生成提示框提示内容->进行提示
+        第一步：
+            发现用户输入，可以利用监听用户在输入框的输入对应的事件，尝试用keyup, keypress, keydown以及oninput四个事件分别来测试对于用户输入的事件监听，并在事件响应函数中增加console.log('event handle')。并尝试以下输入方式，观察提示框内容变化的情况，以及console的输出情况：
+            一个字母一个字母的输入
+            一个字母一个字母输入，同时加上按回车键，ESC键，上下左右键
+            按住某个字母键不动
+            记住试验结论，然后就上面4个事件进行搜索，阅读相关规范标准及技术文章。根据实验结果选择你认为合适的事件监听方式。
+    优化需求1：
+        当用户输入含有 @ 符号时，我们选取用户输入的@前面的字符来和后缀拼接
+        关键在于判断用户输入有没有 @，在发现有 @ 之后，要做的就是拿到 @ 符号之前的字符串内容，来和postfixList进行拼接。
+    优化需求2：
+        这下出现的提示好多了，不过用户如果已经输入了@1，说明他大概率要输入163或者126，我们需要让我们的提示更加符合用户的期望。满足以下需求：
+
+        当用户输入了 @ 及部分后缀时，只从 postfixList 选取符合用户输入预期的后缀，我们以前缀匹配为要求。
+        当用户输入不满足任何前缀匹配时，则显示全部提示
+    需求-2
+        上面我们只完成了提示，但提示还没有直接作用到选择中，我们现在完成以下需求：
+
+        使用CSS实现：鼠标滑过提示框的某一个提示时，这个提示内容背景色变化，表示鼠标经过了这个DOM节点
+        鼠标如果点击某个提示，则提示内容进入输入框，同时提示框消失
+        在上个步骤结束后，在输入框中任意再输入字符或删除字符，则重新开始出现提示框
+    优化需求3：
+        我们需要在两个地方进行处理，一个是在生成提示内容那里，对于特殊字符进行转义编码，另一个是在把鼠标点击的提示框内容转回输入框时进行解码。
+    需求-3
+        我们给提示框加上3个按键的功能，分别是回车和上下键，使得可以通过键盘操作进行提示框的选择
+
+        当有提示框的时候，默认第一个提示为被选择状态，用一个和鼠标滑过不一样的背景色来标识
+        当有输入框的时候，按上键，可以向上移动选择状态，如果按键之前的被选择提示是第一个，则被选状态移到最下面一个
+        当有输入框的时候，按下键，可以向下移动选择状态，如果按键之前的被选择提示是最后一个，则被选状态移到第一个
+        当有输入框时，按回车键，则将当前被选中状态的提示内容，放到输入框中，并隐藏提示框
+        当没有输入框的时候，这3个键盘按键无响应
+        当用户输入发生改变的时候，选择状态都重新切回到第一个提示
+    流程：监听键盘事件->判断按键->如果是上下键则变更选中状态，如果是回车键则进行内容进输入框操作
+
+    如果是上下键则变更选中状态：这里的关键在于，我们如何记录选中状态，以及如何改变。对于零基础的同学，在不基于任何框架的情况下，我们介绍两种基本思路：
+        1、基于DOM，当初次渲染提示框时，在第一个Li中设定一个选中样式的CSS，在按上下键的时候，我们通过样式找到设置了特殊样式的Li，清除掉它的样式，然后根据上下键，判断要设置状态的新一个Li是谁，并设置上。按回车的时候，则同样是通过样式找到这个Li，拿到它的内容，回填给input
+        2、基于数据，我们设置一个变量，来保存当前选择的index（即当前选中的是第几行，从0开始计数），当发生上下键操作的时候，直接改变index值，然后重新渲染提示框中的所有html内容，根据index设置来操作后的选择提示样式，回车的时候，直接根据index来获取对应的内容
+     */
+    const emailInput = document.getElementById('email-input'),
+          emailSugWrapper = document.getElementById('email-sug-wrapper');
+    // 邮箱后缀List参考
+    const postfixList = ['163.com', 'gmail.com', '126.com', 'qq.com', '263.net']; 
+    var nowSelectTipIndex = 0; //当前选中的提示
+    var lis = []; //所有提示的li列表
+
+    
+    /**
+     * [resetSelectIndex 重置选中状态]
+     * @return {[undefined]} [undefined]
+     */
+    function resetSelectIndex() {
+        nowSelectTipIndex = 0;
+    }
+    /**
+     * [getUserInput 拿到input输入框的输入内容前后空格trim后返回]
+     * @param {[element]} ele [要获取内容的input的的DOM对象]
+     * @return {[string]} [去除前后空格的字符串]
+     */
+    function getUserInput(ele) {
+        return ele.value.trim();
+    }
+    /**
+     * [generateTips 获取用户输入加上postfix生成提示内容]
+     * @param {[string]} inputstr [用户输入的内容]
+     * @return {[array]} [提示的内容组成的数组]
+     */
+    function generateTips(inputstr) {
+        var str = '',//存放提示内容
+            beforeStr = inputstr, //用户输入的@之前的字符串 默认等于inputstr
+            afterStr = '';  //用户输入的@之后的字符串
+            len = postfixList.length;
+            isExist = inputstr.indexOf('@'); //用户是否输入@ 有返回@的位置 没有返回-1
+            isMatch = false,
+            li = '';
+        lis = [];
+        if (isExist!== -1) {
+            beforeStr = inputstr.slice(0, isExist);
+            afterStr = inputstr.slice(isExist + 1);
+        }
+        for (var i = 0; i < len; i++) {
+            if (postfixList[i].indexOf(afterStr) === 0) {
+                li = document.createElement('li');
+                lis.push(li);
+                li.innerText = HtmlUtil.htmlDecode(beforeStr) + '@' + postfixList[i];
+                isMatch = true;//如果出现匹配设置isMatch = true;
+            }            
+        }
+        for (var i = 0; i < len; i++) {
+            if(isMatch === false) {
+                li = document.createElement('li');
+                lis.push(li);
+                li.innerText = HtmlUtil.htmlDecode(beforeStr) + '@' + postfixList[i];
+            }
+        }   
+        //如果lis提示li存在 就将第nowSelectTipIndex个Li的样式设置为被选样式 
+        if (lis[nowSelectTipIndex]) {
+            lis[nowSelectTipIndex].className ='nowselect'            
+        }
+        return lis;
+    }
+    /**
+     * [addTipsToWrapper 将内容添加到email-sug-wrapper中]
+     * @param {[str]} tipsstr [生成的提示内容]
+     */
+    function addTipsToWrapper(tipsstr) {
+        var len = tipsstr.length
+        emailSugWrapper.innerHTML = ''
+        for(var i = 0; i < len; i++) {
+            emailSugWrapper.appendChild(tipsstr[i])
+        }
+    }
+    /**
+     * [tipsIsHide 控制email-sug-wrapper的显示/隐藏状态]
+     * @param  {[inputstr]} inputstr [用户输入的内容]
+     */
+    function tipsIsHide(inputstr) {
+        inputstr === '' && hideTips() ||　showTips();
+    }
+    /**
+     * [hideTips 隐藏email-sug-wrapper]
+     * @return {[boolean]} [隐藏成功返回true]
+     */
+    function hideTips() {
+        emailSugWrapper.style.display = 'none';
+        if (emailSugWrapper.style.display === 'none') {
+            return true;
+        } 
+    }
+    /**
+     * [showTips 显示email-sug-wrapper]
+     * @return {[boolean]} [显示成功返回true]
+     */
+    function showTips() {
+        emailSugWrapper.style.display = 'block';
+        if (emailSugWrapper.style.display === 'block') {
+            return true;
+        } 
+    }
+    emailSugWrapper.onclick = function (event) {
+        var e = event || window.event;
+        var ele = e.target || e.srcElement;
+        if (ele.nodeName === 'LI') {
+            var email = ele.innerText;
+            emailInput.value = HtmlUtil.htmlEncode(email);
+            hideTips();
+        }
+    }
+    document.onkeydown = function (e) {
+        var e = event || window.event;
+        var code = e.keyCode;
+        var lisLen = lis.length; //提示的li列表的长度
+        //如果用户按上键
+        if (code === 38) {
+            if (nowSelectTipIndex === 0) {
+                nowSelectTipIndex = len - 1;
+            } else {
+                --nowSelectTipIndex;
+            }
+        }
+        //如果用户按下键
+        if (code === 40) {
+            if (nowSelectTipIndex < len - 1) {
+                ++nowSelectTipIndex          
+            } else {
+                nowSelectTipIndex = 0;
+            }
+        }
+        //如果用户按回车
+        if (code === 13) {
+            //从当前提示框中选第 nowSelectTipIndex 个Li，将其HTML内容解码后填到input中
+            emailInput.value = HtmlUtil.htmlEncode(lis[nowSelectTipIndex].innerText);
+            hideTips();
+        }
+        if (code === 27) {
+            emailInput.focus();
+            emailInput.setSelectionRange(0, emailInput.value.length);
+        }
+    }
+
+    // //获取用户输入，生成提示框中的提示内容，将提示内容添加到email-sug-wrapper中
+    //控制email-sug-wrapper的显示/隐藏状态
+    emailInput.onkeyup = function (event) { 
+        var e = event || window.event;
+        var code = e.keyCode;  
+        var inputstr = getUserInput(this); //获取用户输入
+        var tipsstr = generateTips(inputstr) //生成提示内容
+        addTipsToWrapper(tipsstr); //将内容添加到email-sug-wrapper中
+        if (code !== 13 && code !== 40 && code !== 38 ) {
+            tipsIsHide(inputstr); //控制email-sug-wrapper的显示/隐藏状态
+            resetSelectIndex(); 
+        }
+    } 
+    //页面一加载焦点位于input里面
+    window.onload = function () {
+        emailInput.focus();
+    }
+    </script>
+</body>
+</html>
