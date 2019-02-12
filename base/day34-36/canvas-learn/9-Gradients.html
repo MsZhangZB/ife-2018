@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>渐变</title>
+</head>
+<body>
+  <canvas id="canvas1"></canvas>
+  <canvas id="canvas2"></canvas>
+  <canvas id="canvas3"></canvas>
+  <canvas id="canvas4"></canvas>
+  <canvas id="canvas5"></canvas>
+  <canvas id="canvas6"></canvas>
+    <script>
+      /*
+      canvas的渐变：
+        线性或者径向的渐变来填充或描边。我们用下面的方法新建一个 canvasGradient 对象，并且赋给图形的 fillStyle 或 strokeStyle 属性。
+      
+      createLinearGradient(x1, y1, x2, y2) 线性渐变
+        createLinearGradient 方法接受 4 个参数，表示渐变的起点 (x1,y1) 与终点 (x2,y2)。
+      createRadialGradient(x1, y1, r1, x2, y2, r2)径向渐变
+        createRadialGradient 方法接受 6 个参数，前三个定义一个以 (x1,y1) 为原点，半径为 r1 的圆，后三个参数则定义另一个以 (x2,y2) 为原点，半径为 r2 的圆
+      gradient.addColorStop(position, color) 
+        addColorStop 方法接受 2 个参数，position 参数必须是一个 0.0 与 1.0 之间的数值，表示渐变中颜色所在的相对位置。例如，0.5 表示颜色会出现在正中间。color 参数必须是一个有效的 CSS 颜色值（如 #FFF， rgba(0,0,0,1)，等等）。
+
+
+      图案样式 Patterns
+      createPattern(image, type)
+        该方法接受两个参数。Image 可以是一个 Image 对象的引用，或者另一个 canvas 对象。Type 必须是下面的字符串值之一：repeat，repeat-x，repeat-y 和 no-repeat。
+        用 canvas 对象作为 Image 参数在 Firefox 1.5 (Gecko 1.8) 中是无效的。
+        你需要确认 image 对象已经装载完毕，否则图案可能效果不对的。
+
+      阴影Shadows
+        shadowOffsetX = float
+          shadowOffsetX 和 shadowOffsetY 用来设定阴影在 X 和 Y 轴的延伸距离，它们是不受变换矩阵所影响的。负值表示阴影会往上或左延伸，正值则表示会往下或右延伸，它们默认都为 0。
+        shadowOffsetY = float
+          shadowOffsetX 和 shadowOffsetY 用来设定阴影在 X 和 Y 轴的延伸距离，它们是不受变换矩阵所影响的。负值表示阴影会往上或左延伸，正值则表示会往下或右延伸，它们默认都为 0。
+        shadowBlur = float
+          shadowBlur 用于设定阴影的模糊程度，其数值并不跟像素数量挂钩，也不受变换矩阵的影响，默认为 0。
+        shadowColor = color
+          shadowColor 是标准的 CSS 颜色值，用于设定阴影颜色效果，默认是全透明的黑色。
+        Canvas 填充规则节
+          当我们用到 fill（或者 clip和isPointinPath ）你可以选择一个填充规则，该填充规则根据某处在路径的外面或者里面来决定该处是否被填充，这对于自己与自己路径相交或者路径被嵌套的时候是有用的。
+          
+          两个可能的值：
+            "nonzero": non-zero winding rule, 默认值.
+            "evenodd":  even-odd winding rule.
+      */
+      function draw1 () {
+        var ctx = document.getElementById('canvas1').getContext('2d');
+        var lineargradient = ctx.createLinearGradient(0, 0, 0, 150);
+        lineargradient.addColorStop(0, 'red');
+        lineargradient.addColorStop(0.5, 'green');
+        lineargradient.addColorStop(1, 'blue');
+        ctx.fillStyle = lineargradient;
+        ctx.fillRect(10, 10, 100, 100);
+      } 
+
+      function draw2() {
+        var ctx = document.getElementById('canvas2').getContext('2d');
+        // Create gradients
+        var lingrad = ctx.createLinearGradient(0, 0, 0, 150);
+        lingrad.addColorStop(0, '#00ABEB');
+        lingrad.addColorStop(0.5, '#fff');
+        lingrad.addColorStop(0.5, '#26C000');
+        lingrad.addColorStop(1, '#fff');
+
+        var lingrad2 = ctx.createLinearGradient(0, 50, 0, 95);
+        lingrad2.addColorStop(0.5, 'red');
+        lingrad2.addColorStop(1, 'black');
+
+        // assign gradients to fill and stroke styles
+        ctx.fillStyle = lingrad;
+        ctx.strokeStyle = lingrad2;
+        
+        // draw shapes
+        ctx.fillRect(10, 10, 130, 130);
+        ctx.strokeRect(50, 50, 50, 50);
+
+      }
+      function draw3 () {
+        var ctx = document.getElementById('canvas3').getContext('2d');
+
+        // 创建渐变
+        var radgrad = ctx.createRadialGradient(45,45,10,52,50,30);
+        radgrad.addColorStop(0, '#A7D30C');
+        radgrad.addColorStop(0.9, '#019F62');
+        radgrad.addColorStop(1, 'rgba(1,159,98,0)');
+        
+        var radgrad2 = ctx.createRadialGradient(105,105,20,112,120,50);
+        radgrad2.addColorStop(0, '#FF5F98');
+        radgrad2.addColorStop(0.75, '#FF0188');
+        radgrad2.addColorStop(1, 'rgba(255,1,136,0)');
+
+        var radgrad3 = ctx.createRadialGradient(95,15,15,102,20,40);
+        radgrad3.addColorStop(0, '#00C9FF');
+        radgrad3.addColorStop(0.8, '#00B5E2');
+        radgrad3.addColorStop(1, 'rgba(0,201,255,0)');
+
+        var radgrad4 = ctx.createRadialGradient(0,150,50,0,140,90);
+        radgrad4.addColorStop(0, '#F4F201');
+        radgrad4.addColorStop(0.8, '#E4C700');
+        radgrad4.addColorStop(1, 'rgba(228,199,0,0)');
+        
+        // 画图形
+        ctx.fillStyle = radgrad4;
+        ctx.fillRect(0,0,150,150);
+        ctx.fillStyle = radgrad3;
+        ctx.fillRect(0,0,150,150);
+        ctx.fillStyle = radgrad2;
+        ctx.fillRect(0,0,150,150);
+        ctx.fillStyle = radgrad;
+        ctx.fillRect(0,0,300,150);
+        
+      }
+      function draw4 () {
+        var ctx = document.getElementById('canvas4').getContext('2d');
+
+        // 创建新 image 对象，用作图案
+        var img = new Image();
+        img.src = 'https://mdn.mozillademos.org/files/222/Canvas_createpattern.png';
+        img.onload = function() {
+          // 创建图案
+          var ptrn = ctx.createPattern(img, 'repeat');
+          ctx.fillStyle = ptrn;
+          ctx.fillRect(0, 0, 300, 150);
+        }
+      }
+
+      function draw5 () {
+        var ctx = document.getElementById('canvas5').getContext('2d');
+        ctx.shadowOffsetX = 4;// x轴的偏移
+        ctx.shadowOffsetY = 4;// y轴的偏移
+        ctx.shadowBlur = 2;// 模糊的尺寸
+        ctx.shadowColor = "rgba(0, 0, 0, 0.5)"; //阴影的颜色
+
+
+        ctx.fillStyle = "Black";
+        ctx.fillRect(10, 10, 100, 100)
+      }
+      function draw6 () {
+        var ctx = document.getElementById('canvas6').getContext('2d'); 
+        ctx.beginPath(); 
+        ctx.arc(50, 50, 30, 0, Math.PI*2, true);
+        ctx.arc(50, 50, 15, 0, Math.PI*2, true);
+        ctx.fill("evenodd");
+      }
+        window.onload = function () {
+        draw1();
+        draw2();
+        draw3();
+        draw4();
+        draw5();
+        draw6();
+      }
+    </script>
+</body>
+</html>

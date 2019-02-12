@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>canvas画一条线</title>
+</head>
+<body>
+  <canvas id="canvas1"></canvas>
+  <canvas id="canvas2"></canvas>
+  <script>
+    const canvas1 = document.getElementById('canvas1');
+    function draw1 () {
+      const context = canvas1.getContext('2d');
+      context.beginPath(); //开始路径
+      context.moveTo(200, 20);
+      context.lineTo(50, 50);
+      context.lineTo(200, 50);
+      context.lineCap='round'; //设置线两端的样式butt，round 和 square。默认是 butt
+      context.lineJoin='miter'; //设定线条与线条间接合处的样式 round(圆滑), bevel(正常) 和 miter(添加)
+     
+      context.miterLimit = 5;
+      // 限制当两条线相交时交接处最大长度；所谓交接处长度（斜接长度）是指线条交接处内角顶点到外角顶点的长度。如果本来相交是超过 那么就是 bevel(正常)显示出来
+      context.setLineDash([1, 25]); // 设置当前虚线样式.一个Array数组。一组描述交替绘制线段和间距（坐标空间单位）长度的数字
+      console.log(context.getLineDash());//[1,25]
+      context.lineDashOffset=1; //设置虚线的偏移量
+      context.strokeStyle='red';  //设置颜色
+      context.lineWidth = 10; //设置线条的宽度
+      context.stroke(); //绘制已经定义的
+    }
+
+    function drawDashedLine(ctx, pattern) {
+      ctx.beginPath();
+      ctx.setLineDash(pattern);
+      ctx.moveTo(0, y);
+      ctx.lineTo(300, y);
+      ctx.stroke();
+      y += 20;
+    }
+
+    const canvas2 = document.getElementById('canvas2');
+    const context = canvas2.getContext('2d');
+    let y = 15;
+
+    drawDashedLine(context, []);
+    drawDashedLine(context, [1, 1]);
+    drawDashedLine(context, [10, 10]);
+    drawDashedLine(context, [20, 5]);
+    drawDashedLine(context, [15, 3, 3, 3]);
+    drawDashedLine(context, [20, 3, 3, 3, 3, 3, 3, 3]);
+    drawDashedLine(context, [12, 3, 3]);  // Equals [12, 3, 3, 12, 3, 3]
+    
+    window.onload = function() {
+      draw1();
+    }
+  </script>
+</body>
+</html>

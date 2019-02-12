@@ -1,0 +1,31 @@
+table {
+  border-left: 1px solid #ccc; 
+  border-bottom: 1px solid #ccc; 
+  width: 100%;
+  text-align: center;
+}
+td, 
+th {
+  border-top: 1px solid #ccc; 
+  border-right: 1px solid #ccc;
+  padding: 5px; 
+}
+label {user-select: none;}
+#chart {
+  width: 1349px;
+}
+#barchart {
+  margin: 20px 25px 20px 50px;
+  height: 300px;
+}
+#barchart line {
+  stroke: black;
+  stroke-width: 5px;
+}
+#canvas {margin: 20px 0 20px 25px;}
+/*对svg动态添加的line元素进行样式设置*/
+#table-wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+tr:hover {background-color: #00cccc;}

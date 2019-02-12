@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>svg做出矩形</title>
+  <style>
+    rect {
+      width: 100px;
+      height: 100px;
+      fill: rgb(121, 10, 121);
+      stroke: aqua;
+      stroke-width: 5px;
+    }
+    path {
+      fill: none;
+      stroke: red;
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <rect x="10" y="10">
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 10 10 h 100 v 100 h -100 z">
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 10 10 l 100 0 l 0 100 l -100 0 z">
+  </svg>
+</body>
+</html>

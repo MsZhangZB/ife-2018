@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>svg画树</title>
+  <style>
+    svg {
+      width: 300px;
+      height: 300px;
+    }
+    polyline {
+      fill: green;
+      stroke:black;
+      stroke-width: 2px;
+    }
+    rect {
+      width: 8px;
+      height: 50px;
+      fill: brown;
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http:www.w3.org/200/svg" version="1.1">
+    <polyline points="150,0 120,20 150,20 110,50, 150,50 90,80 210,80 150,50 190,50 150,20 180,20 150,0"/>
+    <rect x="146" y="80" />
+  </svg>
+</body>
+</html>

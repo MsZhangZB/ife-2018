@@ -1,0 +1,11 @@
+canvas概念以及发展、兼容性：
+  <canvas>是一个可以使用脚本(通常为JavaScript)来绘制图形的 HTML 元素.例如,它可以用于绘制图表、制作图片构图或者制作简单的(以及不那么简单的)动画. <canvas>元素来绘制2D或者3D图形。<canvas> 最早由Apple引入WebKit，用于Mac OS X 的 Dashboard，随后被各个浏览器实现。如今，所有主流的浏览器都支持它。
+  兼容性:
+    Internet Explorer 9、Firefox、Opera、Chrome 以及 Safari 支持 <canvas> 及其属性和方法。
+    注释：Internet Explorer 8 以及更早的版本不支持 <canvas> 元素。
+  Canvas 的默认大小为300像素×150像素（宽×高，像素的单位是px）
+目标：
+  1、了解基础的<canvas>基本概念
+  2、明白可以用canvas做什么
+  3、熟练掌握<canvas>元素来绘制2D图形
+  

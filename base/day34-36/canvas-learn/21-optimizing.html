@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>优化canvas</title>
+</head>
+<body>
+  <script>
+    /*
+    在离屏canvas上预渲染相似的图形或重复的对象节
+      如果你发现你的在每一帧里有好多复杂的画图运算，请考虑创建一个离屏canvas，将图像在这个画布上画一次（或者每当图像改变的时候画一次），然后在每帧上画出视线以外的这个画布。
+    避免浮点数的坐标点，用整数取而代之
+      浏览器为了达到抗锯齿的效果会做额外的运算。为了避免这种情况，请保证在你调用drawImage()函数时，用Math.floor()函数对所有的坐标点取整
+    不要在用drawImage时缩放图像节
+      在离屏canvas中缓存图片的不同尺寸，而不要用drawImage()去缩放它们。
+    使用多层画布去画一个复杂的场景
+      你可能会发现，你有些元素不断地改变或者移动，而其它的元素，例如外观，永远不变。这种情况的一种优化是去用多个画布元素去创建不同层次。
+    用CSS设置大的背景图节
+      如果像大多数游戏那样，你有一张静态的背景图，用一个静态的<div>元素，结合background 特性，以及将它置于画布元素之后。这么做可以避免在每一帧在画布上绘制大图。
+    用CSS transforms特性缩放画布节
+      CSS transforms 特性由于调用GPU，因此更快捷。最好的情况是，不要将小画布放大，而是去将大画布缩小。例如Firefox系统，目标分辨率480 x 320 px。
+    关闭透明度节
+      如果你的游戏使用画布而且不需要透明，当使用 HTMLCanvasElement.getContext() 创建一个绘图上下文时把 alpha 选项设置为 false 。这个选项可以帮助浏览器进行内部优化
+      var ctx = canvas.getContext('2d', { alpha: false });
+
+    将画布的函数调用集合到一起（例如，画一条折线，而不要画多条分开的直线）
+    避免不必要的画布状态改变
+    渲染画布中的不同点，而非整个新状态
+    尽可能避免 shadowBlur特性
+    尽可能避免text rendering
+    使用不同的办法去清除画布(clearRect() vs. fillRect() vs. 调整canvas大小)
+    有动画，请使用window.requestAnimationFrame() 而非window.setInterval()
+    请谨慎使用大型物理库
+    */
+    myEntity.offscreenCanvas = document.createElement("canvas");
+    myEntity.offscreenCanvas.width = myEntity.width;
+    myEntity.offscreenCanvas.height = myEntity.height;
+    myEntity.offscreenContext = myEntity.offscreenCanvas.getContext("2d");
+    myEntity.render(myEntity.offscreenContext);
+  </script>
+</body>
+</html>

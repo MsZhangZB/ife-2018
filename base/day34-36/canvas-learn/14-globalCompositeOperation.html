@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图形组合规则</title>
+</head>
+<body>
+  <script>
+    /*
+    globalCompositeOperation 
+      属性设置或返回如何将一个源（新的）图像绘制到目标（已有）的图像上
+      源图像 = 您打算放置到画布上的绘图。
+      目标图像 = 您已经放置在画布上的绘图
+    属性值：
+      source-over	默认。在目标图像上显示源图像。
+      source-atop	在目标图像顶部显示源图像。源图像位于目标图像之外的部分是不可见的。
+      source-in	在目标图像中显示源图像。只有目标图像内的源图像部分会显示，目标图像是透明的。
+      source-out	在目标图像之外显示源图像。只会显示目标图像之外源图像部分，目标图像是透明的。
+      destination-over	在源图像上方显示目标图像
+      destination-atop	在源图像顶部显示目标图像。源图像之外的目标图像部分不会被显示
+      destination-in	在源图像中显示目标图像。只有源图像内的目标图像部分会被显示，源图像是透明的。
+      destination-out	在源图像外显示目标图像。只有源图像外的目标图像部分会被显示，源图像是透明的。
+      lighter	显示源图像 + 目标图像。
+      copy	显示源图像。忽略目标图像。
+      xor	使用异或操作对源图像与目标图像进行组合。
+      multiply 将顶层像素与底层相应像素相乘，结果是一幅更黑暗的图片。
+
+      
+      screen 像素被倒转，相乘，再倒转，结果是一幅更明亮的图片。
+      overlay multiply和screen的结合，原本暗的地方更暗，原本亮的地方更亮。
+      darken 保留两个图层中最暗的像素
+      lighten 保留两个图层中最亮的像素。
+      color-dodge 将底层除以顶层的反置。
+      color-burn 将反置的底层除以顶层，然后将结果反过来。
+      hard-light 屏幕相乘（A combination of multiply and screen）类似于叠加，但上下图层互换了。
+      soft-light  用顶层减去底层或者相反来得到一个正值。
+      difference 一个柔和版本的强光（hard-light）。纯黑或纯白不会导致纯黑或纯白。
+      exclusion 和difference相似，但对比度较低。
+      hue 保留了底层的亮度（luma）和色度（chroma），同时采用了顶层的色调（hue）。
+      saturation 保留底层的亮度（luma）和色调（hue），同时采用顶层的色度（chroma）
+      color 保留了底层的亮度（luma），同时采用了顶层的色调(hue)和色度(chroma)。
+      luminosity 保持底层的色调（hue）和色度（chroma），同时采用顶层的亮度（luma）
+    */
+  </script>
+</body>
+</html>

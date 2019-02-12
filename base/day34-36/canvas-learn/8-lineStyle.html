@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>linestyle</title>
+</head>
+<body>
+  <canvas id="canvas1"></canvas>
+  <canvas id="canvas2"></canvas>
+  <canvas id="canvas3"></canvas>
+  <canvas id="canvas4"></canvas>
+  <script>
+    /*
+    线型Line styles
+    lineWidth = value
+      设置线条宽度。 属性值必须为正数。默认值是1.0。
+    lineCap = type
+      设置线条末端样式。butt，round 和 square。默认是 butt。
+      butt: 可以注意到它是与辅助线齐平的。
+      round: 端点处加上了半径为一半线宽的半圆。
+      square: 端点处加上了等宽且高度为一半线宽的方块。
+    lineJoin = type
+      设定线条与线条间接合处的样式。 round, bevel 和 miter。默认是 miter
+      round: 边角处被磨圆了，圆的半径等于线宽。
+      bevel: 
+      miter: 当值是 miter 的时候，线段会在连接处外侧延伸直至交于一点，延伸效果受到下面将要介绍的 miterLimit 属性的制约
+    miterLimit = value
+      限制当两条线相交时交接处最大长度；所谓交接处长度（斜接长度）是指线条交接处内角顶点到外角顶点的长度。
+    getLineDash()
+      返回一个包含当前虚线样式，长度为非负偶数的数组。
+    setLineDash(segments)
+      设置当前虚线样式。长度为非负偶数的数组 如果是奇数 自己有复制一次 就为原始长度的两倍
+      一个Array数组。一组描述交替绘制线段和间距（坐标空间单位）长度的数字
+    lineDashOffset = value
+      设置虚线样式的起始偏移量。
+    */
+    function draw1() {
+      var ctx = document.getElementById('canvas1').getContext('2d');
+      for (var i = 0; i < 10; i++){
+        ctx.lineWidth = 1 + i;
+        ctx.beginPath();
+        ctx.moveTo(5 + i * 14, 5);
+        ctx.lineTo(5 + i * 14, 140);
+        ctx.stroke();
+      }
+    }
+    function draw2() {
+      var ctx = document.getElementById('canvas2').getContext('2d');
+      var lineCap = ['butt','round','square'];
+
+      // 创建路径
+      ctx.strokeStyle = '#09f';
+      ctx.beginPath();
+      ctx.moveTo(10, 10);
+      ctx.lineTo(140, 10);
+      ctx.moveTo(10, 140);
+      ctx.lineTo(140, 140);
+      ctx.stroke();
+
+      // 画线条
+      ctx.strokeStyle = 'black';
+      for (var i = 0; i <lineCap.length; i++) {
+        ctx.lineWidth = 15;
+        ctx.lineCap = lineCap[i];
+        ctx.beginPath();
+        ctx.moveTo(25 + i * 50, 10);
+        ctx.lineTo(25 + i * 50, 140);
+        ctx.stroke();
+      }
+    }
+    function draw3() {
+      var ctx = document.getElementById('canvas3').getContext('2d');
+      var lineJoin = ['round', 'bevel', 'miter'];
+      ctx.lineWidth = 10;
+      for (var i = 0; i < lineJoin.length; i++) {
+        ctx.lineJoin = lineJoin[i];
+        ctx.beginPath();
+        ctx.moveTo(-5, 5 + i * 40);
+        ctx.lineTo(35, 45 + i * 40);
+        ctx.lineTo(75, 5 + i * 40);
+        ctx.lineTo(115, 45 + i * 40);
+        ctx.lineTo(155, 5 + i * 40);
+        ctx.stroke();
+      }
+    }
+    var canvas4 = document.getElementById('canvas4');
+    var ctx = document.getElementById('canvas4').getContext('2d');
+    var offset = 0;
+
+    function draw4() {
+      ctx.clearRect(0,0, canvas4.width, canvas4.height);
+      ctx.setLineDash([4, 2]);
+      ctx.lineDashOffset = -offset;
+      ctx.strokeRect(10,10, 100, 100);
+    }
+
+    function march() {
+      offset++;
+      if (offset > 16) {
+        offset = 0;
+      }
+      draw4();
+      setTimeout(march, 20);
+    }
+
+    march();
+    
+    window.onload = function () {
+      draw1();
+      draw2();
+      draw3();
+      draw4();
+    }
+  </script>
+</body>
+</html>

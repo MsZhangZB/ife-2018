@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>draw文字</title>
+</head>
+<body>
+  <canvas id="canvas1"></canvas>
+  <script>
+    const canvas1 = document.getElementById('canvas1');
+    const context = canvas1.getContext('2d');
+    function draw() {
+      context.font = '25px Microsoft YaHei';
+      context.fillText('Hello world!', 10, 50);
+      context.textAlign = 'center'; //设置或返回文本内容的当前对齐方式。
+      context.textBaselin = 'middle'; //textBaseline 属性设置或返回在绘制文本时的当前文本基线。
+      context.strokeText('我喜欢你', 10, 100);
+      console.log(context.measureText('我喜欢你').width);
+      //measureText() 方法返回包含一个对象，该对象包含以像素计的指定字体宽度
+    draw();
+    }
+  </script>
+</body>
+</html>

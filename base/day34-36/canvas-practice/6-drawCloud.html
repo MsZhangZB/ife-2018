@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>画一朵云</title>
+</head>
+<body>
+  <canvas id="canvas1" width="300" height="300"></canvas>
+  <script>
+    // quadraticCurveTo(cp1x, cp1y, x, y)
+    //     绘制二次贝塞尔曲线，cp1x,cp1y为一个控制点，x,y为结束点
+    //   bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
+    //     绘制三次贝塞尔曲线，cp1x,cp1y为控制点一，cp2x,cp2y为控制点二，x,y为结束点。
+    const canvas1 = document.getElementById('canvas1');
+    const context = canvas1.getContext('2d');
+    function draw() {
+      context.beginPath();
+      context.moveTo(75, 100);
+      context.lineWidth = 5;
+      context.strokeStyle = '#3542a2';
+      context.lineJoin='miter';
+      context.quadraticCurveTo(70, 70, 90, 80);
+      context.quadraticCurveTo(120, 0, 150, 80);
+      context.quadraticCurveTo(200, 80, 180, 120);
+      context.quadraticCurveTo(220, 140, 180, 160);
+      context.quadraticCurveTo(150, 180, 120, 160);
+      context.quadraticCurveTo(100, 200, 80, 160);
+      context.quadraticCurveTo(40, 200, 40, 140);
+      context.quadraticCurveTo(40, 70, 75, 100);
+      context.closePath();
+      context.stroke();
+    }
+    draw();
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>canvas</title>
+</head>
+<body>
+  <canvas id="tutorial" width="300" height="150">
+    current stock price: $3.15 +0.15
+  </canvas>
+  <canvas id="clock" width="350" height="150">
+    <img src="#" width="300" height="150" alt=""/>
+  </canvas>
+  <!--
+    canvas会初始化宽度为300像素和高度为150像素。该元素可以使用CSS来定义大小，但在绘制时图像会伸缩以适应它的框架尺寸：如果CSS的尺寸与初始画布的比例不一致，它会出现扭曲。
+    <canvas>元素与<img>标签的不同之处在于，就像<video>，<audio>，或者 <picture>元素一样，很容易定义一些替代内容
+    对于不支持canvas的老版本浏览器  我们用展示替代内容
+      我们只是在<canvas>标签中提供了替换内容。不支持<canvas>的浏览器将会忽略容器并在其中渲染后备内容。而支持<canvas>的浏览器将会忽略在容器中包含的内容，并且只是正常渲染canvas 
+      用法：上面两个例子
+     <canvas>元素与 <img> 元素不同，<canvas> 元素需要结束标签(</canvas>)。如果结束标签不存在，则文档的其余部分会被认为是替代内容，将不会显示出来。
+  -->
+</body>
+</html>

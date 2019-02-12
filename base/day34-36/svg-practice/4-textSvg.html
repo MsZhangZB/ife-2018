@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>svg显示一些文字</title>
+  <style>
+
+    #text2 {
+      fill: red;
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <text id="text1" x="0" y="15" fill="red">I love SVG</text>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <text id="text2" x="10" y="10" fill="red">I love SVG</text>
+  </svg>
+
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <path id="path1" d="M75,20 a1,1 0 0,0 100,0" />
+    </defs>
+    <text x="10" y="100" style="fill:red;">
+      <textPath xlink:href="#path1">I love SVG I love SVG</textPath>
+    </text>
+  </svg>
+
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <text x="10" y="20" style="fill:red;">Several lines:
+      <tspan x="10" y="45">First line</tspan>
+      <tspan x="10" y="70">Second line</tspan>
+    </text>
+  </svg>
+
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <a xlink:href="http://www.baidu.com" target="_blank">
+      <text x="0" y="15" fill="red">I love SVG</text>
+    </a>
+  </svg>
+</body>
+</html>

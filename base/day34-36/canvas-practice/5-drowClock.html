@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>画一个时钟</title>
+</head>
+<body>
+  <canvas id="canvas" width="300" height="300"></canvas>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    const times = ['3X4', 'yi', '1+1', 'Three', '2^2', '五', '36', '56/8', '4X2', '3^2','X','11']
+    function drawClock () {
+      context.beginPath();
+      context.save();
+      context.clearRect(0, 0, 300, 300); //每次执行的时候先清楚
+      context.translate(150, 150);
+      context.stokeStyle = '#000';
+      context.setLineDash([10, 5]);
+      context.arc(0, 0, 120,0, Math.PI * 2, true);
+      context.closePath();
+      context.stroke(); 
+      context.font = '12px Microsft YaHei';
+      context.textAlign='center';
+      context.fillText(times[0], 0, -100);
+      context.textAlign='end';
+      context.fillText(times[1], 50, -90);
+      context.fillText(times[2], 95, -55);
+      context.fillText(times[3], 110, 0);
+      context.fillText(times[4], 95, 55);
+      context.fillText(times[5], 55, 95);
+      context.textAlign='center';
+      context.fillText(times[6], 0, 110);  
+      context.textAlign='start';
+      context.fillText(times[7], -55, 95);
+      context.fillText(times[8], -95, 55);
+      context.fillText(times[9], -110, 0);
+      context.fillText(times[10], -95, -55);
+      context.fillText(times[11], -50, -90);
+      context.beginPath();
+      context.arc(0, 0, 5, 0, Math.PI * 2, true);
+      context.fill();         
+      context.restore();
+
+      //时针
+      const now = new Date();
+      const sec = now.getSeconds();
+      const min = now.getMinutes();
+      let hr  = now.getHours();
+      hr = hr >= 12 ? hr-12 : hr;//因为获取的时间是24小制
+      context.save();
+      context.translate(150, 150);
+      context.rotate(-Math.PI / 2);
+      context.setLineDash([]);
+      context.rotate(hr * (Math.PI/6)); //由于图形误差 因此时针一直指向对于的小时数
+      // context.rotate(hr * (Math.PI/6) + (Math.PI/360) * min + (Math.PI/21600) * sec);
+      context.lineWidth = 5;
+      context.beginPath();
+      context.moveTo(-20, 0);
+      context.lineTo(40, 0);
+      context.stroke();
+      context.restore();
+      //分针
+      context.save();   
+      context.setLineDash([]);
+      context.translate(150, 150);
+      context.rotate(-Math.PI / 2);
+      context.rotate( (Math.PI/30) * min + (Math.PI/1800) * sec )
+      context.lineWidth = 4;
+      context.beginPath();
+      context.moveTo(-28, 0);
+      context.lineTo(65, 0);
+      context.stroke();
+      context.restore();
+      //秒针
+      context.save();
+      context.translate(150, 150);
+      context.rotate(-Math.PI / 2);
+      context.rotate(sec * Math.PI/30);
+      context.strokeStyle = "#D40000";
+      context.fillStyle = "#D40000";
+      context.lineWidth = 2;
+      context.beginPath();
+      context.moveTo(-30,0);
+      context.lineTo(83,0);
+      context.stroke();
+      context.restore();
+      window.requestAnimationFrame(drawClock);
+    }
+    window.requestAnimationFrame(drawClock);
+  </script>
+</body>
+</html>

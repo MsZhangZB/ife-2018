@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>svg做出线</title>
+  <style>
+    line {
+      stroke: black;
+      stroke-width: 2;
+    }
+    path {
+      stroke: black;
+      stroke-width: 2;
+    }
+  </style>
+</head>
+<body>
+  <!--
+  下面的命令可用于路径数据：
+    M = moveto //M(m) x y移动到(x, y)小写标识相对上个坐标点的位移，下同
+    L = lineto //L(l) x y画一条线到(x, y)
+    H = horizontal lineto //H(h) x 水平画一条直线到x
+    V = vertical lineto //V(v) y 垂直画一条直线到yy
+    C = curveto //C(c) cx1 cy1 cx2 cy2 x  y 
+      //曲线 从当前点画一条到(x, y)的三次贝塞尔曲线，曲线的开始控制点和终点控制点飞别为(cx1, cy1), (cx2, cy2)
+    S = smooth curveto //S(s)cx2 cy2 x y平滑的曲线
+      ////此命令只能更在一个C命令使用 假设C命令生成曲线s S命令的作用是再画一条(x, y)的三次贝塞尔曲线，曲线的终点控制点是(cx2, cy2)，曲线的开始控制点是s的终点控制点关于s终点对称点
+    Q = quadratic Belzier curve 
+      //Q(q) cx cy x y 从当前点画一条到(x, y)的二次贝塞尔曲线，曲线的控制点为(cx, cy)
+    T = smooth quadratic Belzier curveto //T(t) x y平滑二次方贝塞尔曲线
+      //此命令只能更在一个Q命令使用 假设Q命令生成曲线s T命令的作用是从s的终点在画一条到(x, y)的二次贝塞尔曲线，曲线的控制点为s控制点关于s终点的对称点 T命令生成的曲线会非常的平滑
+    A = elliptical Arc //A(a) rx ry x-axis-rotation large-arc sweep x y 椭圆弧
+      //画一段到(x, y)的椭圆弧，椭圆弧的x, y轴的半径分别为rx ry 椭圆相对于x轴旋转x-axis-rotation度 large-arc=0表明弧线小于180度，
+      large-arc=1表明弧线大于180度
+      sweep=0 表明弧线逆时针旋转
+      sweep=1 表明弧线顺时针旋转
+    Z = closepath //关闭路径
+    以上所有命令均允许小写字母。大写表示绝对定位，小写表示相对定位。
+  -->
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <line x1="20" y1="20" x2="100" y2="20"/>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 0 75 h 100"/>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 150 75 v 100"/>
+  </svg>  
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path  d="M 0 75 h 100"/>
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path  d="M0 75 L 100 75"/><!--绝对位置-->
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path  d="M0 75 l 100 0"/> <!--相对开始点的位置-->
+  </svg> 
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path  d="M0 75 100 75"/> <!--绝对位置-->
+  </svg> 
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+      <path d="M 0 150 q 150 -300 300 150" fill="none"/> <!--三个点：开始点 控制点 结束点-->
+  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 0 150 c 150 -300 170 -300 300 150" fill="none"/>
+  </svg> 
+  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <path d="M 0 150 a 50 70 20 0 1 100 0" stroke="red" fill="none"/>
+  </svg>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>绘制圆形</title>
+</head>
+<body>
+  <canvas id="canvas" width="150" height="200"></canvas>
+  <script>
+    /* 下面两个for循环，生成圆弧的行列（x,y）坐标。每一段圆弧的开始都调用beginPath()。代码中，每个圆弧的参数都是可变的，实际编程中，我们并不需要这样做。
+
+    x,y坐标是可变的。半径（radius）和开始角度（startAngle）都是固定的。结束角度（endAngle）在第一列开始时是180度（半圆）然后每列增加90度。最后一列形成一个完整的圆。
+
+    clockwise语句作用于第一、三行是顺时针的圆弧，anticlockwise作用于二、四行为逆时针圆弧。if语句让一、二行描边圆弧，下面两行填充路径。 */
+    function draw() {
+      var canvas = document.getElementById('canvas');
+      if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        for (var i = 0; i < 4; i++) {
+          for (var j = 0; j < 3;j++) {
+            ctx.beginPath();
+            var x = 25 + j * 50; //x坐标
+            var y = 25 + i * 50; //y坐标
+            var r = 20 //圆弧半径
+            var startAngle = 0;
+            var endAngle = Math.PI+(Math.PI*j)/2; // 结束点
+            var anticlockwise = i % 2 == 0 ? false : true; // 顺时针或逆时针
+            console.log(anticlockwise)
+            ctx.arc(x, y, r, startAngle, endAngle, anticlockwise);
+            if (i > 1) {
+              ctx.fill();
+            } else {  
+              ctx.stroke(); 
+            }
+          }
+        }
+      }
+    }
+
+
+    window.onload = function () {
+      draw();
+    }
+  </script>
+</body>
+</html>
