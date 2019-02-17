@@ -1,0 +1,15 @@
+localStorage.getItem(value) 从存储中获取一个数据项
+localStorage.setItem(key, value) 创建新的数据项或者更新已存在的值
+Storage.length  获取存储对象的长度 可以根据存储对象的长度来判断 存储对象是否为空
+localStorage.removeItem(key); 移出指定的localStorage项
+localStorage.clear(); 删除所有的localStorage项
+
+window 对象添加了一个事件监听器，在当前域名相关的 Storage 对象发生改变时该事件监听器会触发。
+  window.addEventListener('storage', function(e) {  
+    document.querySelector('.my-key').textContent = e.key;
+    console.log(e)
+    document.querySelector('.my-old').textContent = e.oldValue;
+    document.querySelector('.my-new').textContent = e.newValue;
+    document.querySelector('.my-url').textContent = e.url;
+    document.querySelector('.my-storage').textContent = e.storageArea;
+  });

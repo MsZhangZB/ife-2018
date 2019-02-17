@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+  <ul>
+    <li class="my-key"></li>
+    <li class="my-old"></li>
+    <li class="my-new"></li>
+    <li class="my-url"></li>
+    <li class="my-storage"></li>
+  </ul>
+<body>
+  <script>
+  window.addEventListener('storage', function(e) {  
+    document.querySelector('.my-key').textContent = e.key;
+    console.log(e)
+    document.querySelector('.my-old').textContent = e.oldValue;
+    document.querySelector('.my-new').textContent = e.newValue;
+    document.querySelector('.my-url').textContent = e.url;
+    document.querySelector('.my-storage').textContent = e.storageArea;
+  });
+  </script>
+</body>
+</html>

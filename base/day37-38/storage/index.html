@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box {
+      margin: 0 auto;
+      width: 50%;
+      height: 300px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <p>这个是为了测试stroge对象所用的</p>
+    <label for="">
+      请选择一种背景颜色：
+      <select id="bgcolor">
+        <option value="0F0">绿色</option>
+        <option value="00F">蓝色</option>
+        <option value="F00">红色</option>
+      </select>
+    </label><br />
+    <label for=""> 
+      请选择一种文字字体：   
+      <select id="font">
+        <option value="Microsoft YaHei">Microsoft YaHei</option>
+        <option value="Serif">Serif</option>
+      </select>
+    </label>
+
+  </div>
+  <div>
+    <table>
+      <tr>
+        <td id="test"><input type="text" value="one"></td>
+      </tr>
+    </table>
+  </div>
+  <script src="main.js"></script>
+  <script>
+    var test = document.getElementById('test');
+    var input  = document.querySelector('input');
+    test.textContent = input.value;
+    test.onclick = function (e) {
+      if (e.target.nodeName !== 'INPUT') {
+        test.textContent = '';
+        test.appendChild(input);   
+      }
+    }
+    input.onblur = function () {
+      test.textContent = input.value; 
+      console.log('aaa')
+    }
+  </script>
+</body>
+</html>
