@@ -1,0 +1,43 @@
+
+  hitstory.pushState(state, title, url): 是在history栈中添加一个新的条目.
+  history.replaceState(state, titile, url): replaceState()是替换当前的记录值.
+  window.onpopstate: 当前活动历史项(history entry)改变会触发popstate事件. 
+  注意:
+    1、pushState()不会触发hashchange事件
+    2、调用history.pushState()或history.replaceState()不会触发popstate事件。只有在做出浏览器动作时，才会触发该事件，如用户点击浏览器的回退按钮（或者在Javascript代码中调用history.back()）
+SPA: single-page Application 单页面应用模式
+MAP: Multi-page Application 多页面应用模式
+  区别对别：                            
+    应用组成:   
+      MPA：由多个完整的页面组成         
+      SPA：一个外壳页面和多个页面片段构成
+    跳转方式: 
+      MPA：页面之间的条状是从一个页面跳转到另一个页面
+      SPA：一个页面片段删除或隐藏，加载另一个页面片段并显示。片段间的模拟跳转，没有离开壳页面
+    刷新方式:
+      MAP：整页刷新
+      SPA：页面局部片段刷新
+    跳转后公共资源是否重载：
+      MAP：是
+      SAP：否
+    URL模式	
+      MAP：http://xxx/page1.html和http://xxx/page2.html
+      SAP：http://xxx/shell.html#page1和http://xxx/shell.html#page2
+    用户体验：
+      MAP：页面间切换加载慢，不流畅，用户体验差，尤其在移动端
+      SAP：页面片段切换流畅，用户体验好，包括移动端
+    能否实现转场动画：
+      MAP：无法实现
+      SAP：很容易实现
+    页面间转递数据：
+      MAP：依赖于url、cookie、或者localStorage 实现麻烦
+      SAP：因为在同一个页面内，页面片段间转递数据很容易实现
+    搜索引擎优化：
+      MAP：可以直接做
+      SAP：需要单独方案，有点麻烦(服务器端渲染)
+    特别适用的范围：
+      MAP：需要对搜索引擎友好的网站
+      SAP：对体验要求高，特别是移动应用
+    开发难度：
+      MAP：低一些，框架容易选择
+      SAP：高一些，需要专门的框架来降低这种模式的开发难度

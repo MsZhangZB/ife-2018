@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+table {
+  border-left: 1px solid #ccc; 
+  border-bottom: 1px solid #ccc; 
+  width: 100%;
+  text-align: center;
+}
+td, 
+th {
+  border-top: 1px solid #ccc; 
+  border-right: 1px solid #ccc;
+  padding: 4px; 
+}
+label {user-select: none;}
+#chart {
+  width: 1349px;
+}
+#barchart {
+  margin: 20px 25px 20px 25px;
+  height: 300px;
+}
+#barchart line {
+  stroke: black;
+  stroke-width: 5px;
+}
+#canvas {margin: 20px 0 20px 25px;}
+/*对svg动态添加的line元素进行样式设置*/
+#table-wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+#table-wrapper tr:hover {
+  background-color: #60acfc;
+  cursor: pointer;
+}
+#table-wrapper input {
+  width: 50px;
+}
+#table-wrapper td {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.edit {
+  font-size: 12px;
+  color: #ccc;
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+}
+#table-wrapper td:hover .edit{
+  display: block;
+}
+#table-wrapper button {
+  width: 33px;
+  height: 20px;
+  outline: none;
+  border: none;
+}
