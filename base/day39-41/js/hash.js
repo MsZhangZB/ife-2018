@@ -31,7 +31,7 @@ let hash = {
     this.indexHash = this.url.indexOf('#');
     this.public_url = this.url.slice(0, this.indexHash);
     if(this.indexHash === -1) {
-      history.replaceState('', null, this.public_url + '#' +  region + '||' + product);
+      history.replaceState('', null, this.public_url + '#' +  this.region + '||' + this.product);
     } 
     this.region_select = document.querySelectorAll('#region-radio-wrapper input[checkbox-type=sub]');
     this.product_select = document.querySelectorAll('#product-radio-wrapper input[checkbox-type=sub]');
