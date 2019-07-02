@@ -106,7 +106,7 @@
         setId(tree);
         return result;
       }
-      console.log('前序遍历结果：', getListWithDLR());
+      document.write('前序遍历结果：', getListWithDLR() + '<br>');
       // 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
       function getListWithLDR() {
        var result = [];
@@ -123,7 +123,7 @@
        setId(tree);
        return result;
       }
-      console.log('中序遍历结果：', getListWithLDR());
+      document.write('中序遍历结果：', getListWithLDR() + '<br>');
       // 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
       function getListWithLRD() {
         var result = [];
@@ -139,7 +139,7 @@
         setId(tree);
         return result;
       }
-      console.log('后序遍历结果：', getListWithLRD());
+      document.write('后序遍历结果：', getListWithLRD());
     </script>
 </body>
 </html>
