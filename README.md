@@ -2,6 +2,7 @@
 three ife project
 这里是我在百度前端学院的学习笔记以及作业展示。
 [day1](http://freeheart.xyz/ife-2018/base/day1/notes1.txt)
+
 [day2](http://freeheart.xyz/ife-2018/base/day2/resume.html)---[笔记](http://freeheart.xyz/ife-2018/base/day2/notes.txt)
 [day3](http://freeheart.xyz/ife-2018/base/day3/first.html)
 [day4](http://freeheart.xyz/ife-2018/base/day4/resume.html)---[笔记](http://freeheart.xyz/ife-2018/base/day4/clearkongge.html#)
